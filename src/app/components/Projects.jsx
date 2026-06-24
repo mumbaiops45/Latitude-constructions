@@ -93,7 +93,7 @@ export default function ProjectsSection() {
   return (
     <section className="py-24 md:py-32 bg-gradient-to-b from-green-100/30 via-white to-white relative overflow-hidden">
       {/* Decorative glow */}
-      <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#7CEB1D]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-40 -left-40 w-[600px] h-[600px]  rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
         {/* Heading */}

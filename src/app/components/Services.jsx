@@ -54,7 +54,7 @@ const services = [
     description:
       "Immersive visualisation to experience your home before construction.",
     image:
-      "https://images.unsplash.com/photo-1581092335871-5c5f8c1c7c0a?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=400&fit=crop",
   },
   {
     icon: Ruler,
@@ -115,41 +115,38 @@ export default function ServicesSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-24 md:py-32 bg-gradient-to-b from-green-100/30 via-white to-white relative overflow-hidden"
+      className="py-24 md:py-32  from-green-100/10 via-white to-white relative overflow-hidden"
     >
       {/* Decorative glow */}
-      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-[#7CEB1D]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
         {/* Heading – with stagger animations */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
           <span
-            className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-3 transition-all duration-700 ${
-              sectionInView
+            className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-3 transition-all duration-700 ${sectionInView
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-4"
-            }`}
+              }`}
             style={{ transitionDelay: "100ms" }}
           >
             What We Offer
           </span>
           <h2
-            className={`text-4xl sm:text-5xl md:text-6xl font-bold text-[#041423] leading-tight transition-all duration-700 ${
-              sectionInView
+            className={`text-4xl sm:text-5xl md:text-6xl font-bold text-[#041423] leading-tight transition-all duration-700 ${sectionInView
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-6"
-            }`}
+              }`}
             style={{ transitionDelay: "200ms" }}
           >
             Our Premium
             <span className="block text-[#7CEB1D]">Services</span>
           </h2>
           <p
-            className={`text-gray-600 mt-4 text-base md:text-lg max-w-xl mx-auto transition-all duration-700 ${
-              sectionInView
+            className={`text-gray-600 mt-4 text-base md:text-lg max-w-xl mx-auto transition-all duration-700 ${sectionInView
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-6"
-            }`}
+              }`}
             style={{ transitionDelay: "350ms" }}
           >
             Comprehensive solutions from concept to completion, tailored to your
@@ -167,11 +164,10 @@ export default function ServicesSection() {
               <div
                 key={index}
                 ref={ref}
-                className={`group bg-white rounded-3xl border border-gray-100 hover:border-[#7CEB1D]/50 shadow-sm hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 overflow-hidden transform-gpu ${
-                  isInView
+                className={`group bg-white rounded-3xl border border-gray-100 hover:border-[#7CEB1D]/50 shadow-sm hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 overflow-hidden transform-gpu ${isInView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-12"
-                }`}
+                  }`}
                 style={{
                   transitionDelay: `${index * 100}ms`,
                   transitionProperty:

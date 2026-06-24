@@ -32,7 +32,7 @@ export default function Navbar() {
 
             {/* Logo - left */}
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <div className="relative w-[180px] h-[50px] md:w-[240px] md:h-[80px]">
+              <div className="relative w-[180px] h-[50px] md:w-[90px] md:h-[80px]">
                 <Image
                   src="/logo.jpeg"
                   alt="Latitude Constructions"
