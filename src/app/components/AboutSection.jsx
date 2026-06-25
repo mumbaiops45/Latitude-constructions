@@ -222,7 +222,7 @@ export default function AboutSection() {
                 />
                 <div className="absolute top-6 left-6 bg-[#7CEB1D] text-[#041423] font-bold px-5 py-2 rounded-full text-sm shadow-lg animate-badge-pulse">
                   <span className="flex items-center gap-2">
-                    <Sparkles size={16} /> Established 2002
+                    <Sparkles size={16} /> Established 2014
                   </span>
                 </div>
               </div>
