@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 
-function useInView(options) {
+function useInView(options = {}) {
   const ref = useRef(null);
   const [isInView, setIsInView] = useState(false);
   useEffect(() => {
@@ -59,76 +59,158 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const sectionRef = useRef(null);
+  const [sectionInView, setSectionInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSectionInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-white to-green-100/30 relative overflow-hidden">
-      {/* Hide scrollbar styles */}
-      <style>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
+    <>
+      <style>
+        {`
+          @keyframes float-soft {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+          }
+          @keyframes float-orb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -40px) scale(1.1); }
+          }
+          @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
 
-      <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] bg-[#7CEB1D]/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-3">Testimonials</span>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#041423] leading-tight">
-            What Our <span className="text-[#7CEB1D]">Clients Say</span>
-          </h2>
-          <p className="text-gray-600 mt-4 text-base md:text-lg max-w-xl mx-auto">
-            Real feedback from people who trusted us with their projects.
-          </p>
-        </div>
+          .animate-float-soft {
+            animation: float-soft 4s ease-in-out infinite;
+          }
+          .animate-float-orb {
+            animation: float-orb 8s ease-in-out infinite;
+          }
+          .animate-gradient-bg {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f0f7ee 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 12s ease infinite;
+          }
+          .no-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+        `}
+      </style>
 
-        {/* Scrollable container – scrollbar hidden */}
-        <div className="overflow-x-auto pb-4 scroll-smooth no-scrollbar">
-          <div className="flex gap-6 md:gap-8">
-            {testimonials.map((testimonial, index) => {
-              const { ref, isInView } = useInView({ threshold: 0.3 });
-              return (
-                <div
-                  key={testimonial.id}
-                  ref={ref}
-                  className={`flex-shrink-0 w-80 md:w-96 bg-white rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-2xl border border-gray-100 hover:border-[#7CEB1D]/50 transition-all duration-700 hover:-translate-y-2 transform-gpu ${
-                    isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-                  }`}
-                  style={{
-                    transitionDelay: `${index * 100}ms`,
-                    transitionProperty: "opacity, transform, box-shadow, border-color",
-                    transform: isInView ? "translateY(0) rotateX(0deg)" : "translateY(40px) rotateX(-15deg)",
-                    transformOrigin: "center bottom",
-                  }}
-                >
-                  {/* Stars */}
-                  <div className="flex gap-1 text-[#7CEB1D] mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={18} fill="#7CEB1D" stroke="none" />
-                    ))}
-                  </div>
-                  <p className="text-gray-700 text-sm md:text-base leading-relaxed italic">"{testimonial.quote}"</p>
-                  <div className="flex items-center gap-4 mt-6">
-                    <Image
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      width={48}
-                      height={48}
-                      className="rounded-full"
-                    />
-                    <div>
-                      <p className="font-bold text-[#041423]">{testimonial.name}</p>
-                      <p className="text-xs text-gray-500">{testimonial.role}</p>
+      <section
+        ref={sectionRef}
+        className="py-24 md:py-14 relative overflow-hidden animate-gradient-bg"
+      >
+        {/* Floating decorative orbs */}
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#7CEB1D]/5 blur-3xl pointer-events-none animate-float-orb" />
+        <div
+          className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-[#7CEB1D]/10 blur-3xl pointer-events-none animate-float-orb"
+          style={{ animationDelay: "3s" }}
+        />
+
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
+          {/* Heading – with staggered entrance + floating */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span
+              className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-3 transition-all duration-700 ${
+                sectionInView
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "100ms" }}
+            >
+              Testimonials
+            </span>
+            <h2
+              className={`text-4xl sm:text-5xl md:text-6xl font-bold text-[#041423] leading-tight transition-all duration-700 animate-float-soft ${
+                sectionInView
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
+              }`}
+              style={{ transitionDelay: "200ms" }}
+            >
+              What Our <span className="text-[#7CEB1D]">Clients Say</span>
+            </h2>
+            <p
+              className={`text-gray-600 mt-4 text-base md:text-lg max-w-xl mx-auto transition-all duration-700 ${
+                sectionInView
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
+              }`}
+              style={{ transitionDelay: "350ms" }}
+            >
+              Real feedback from people who trusted us with their projects.
+            </p>
+          </div>
+
+          {/* Scrollable container – scrollbar hidden */}
+          <div className="overflow-x-auto pb-4 scroll-smooth no-scrollbar">
+            <div className="flex gap-6 md:gap-8">
+              {testimonials.map((testimonial, index) => {
+                const { ref, isInView } = useInView({ threshold: 0.3 });
+                return (
+                  <div
+                    key={testimonial.id}
+                    ref={ref}
+                    className={`flex-shrink-0 w-80 md:w-96 bg-white rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-2xl border border-gray-100 hover:border-[#7CEB1D]/50 transition-all duration-700 hover:-translate-y-2 transform-gpu ${
+                      isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                    }`}
+                    style={{
+                      transitionDelay: `${index * 100}ms`,
+                      transitionProperty: "opacity, transform, box-shadow, border-color",
+                      transform: isInView ? "translateY(0) rotateX(0deg)" : "translateY(40px) rotateX(-15deg)",
+                      transformOrigin: "center bottom",
+                    }}
+                  >
+                    {/* Stars */}
+                    <div className="flex gap-1 text-[#7CEB1D] mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={18} fill="#7CEB1D" stroke="none" />
+                      ))}
+                    </div>
+                    <p className="text-gray-700 text-sm md:text-base leading-relaxed italic">"{testimonial.quote}"</p>
+                    <div className="flex items-center gap-4 mt-6">
+                      <Image
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
+                        width={48}
+                        height={48}
+                        className="rounded-full"
+                      />
+                      <div>
+                        <p className="font-bold text-[#041423]">{testimonial.name}</p>
+                        <p className="text-xs text-gray-500">{testimonial.role}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

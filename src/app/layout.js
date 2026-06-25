@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 export const metadata = {
   title: "Latitude Constructions",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
 
         <main className="pt-[90px]">
           {children}
+           <ScrollToTop />
         </main>
 
         <Footer />

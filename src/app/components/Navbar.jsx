@@ -21,15 +21,13 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Premium Header */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm border-b border-white/20 transition-all duration-300">
-
+      {/* Premium Header - solid white background */}
+      <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-sm border-b border-gray-100 transition-all duration-300">
         {/* Green accent gradient bar */}
         <div className="h-1 w-full bg-gradient-to-r from-[#7CEB1D] via-[#a8f05a] to-[#5ec70a]"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="h-[82px] flex items-center justify-between gap-4">
-
             {/* Logo - left */}
             <Link href="/" className="flex-shrink-0 flex items-center">
               <div className="relative w-[180px] h-[50px] md:w-[90px] md:h-[80px]">
@@ -39,6 +37,7 @@ export default function Navbar() {
                   fill
                   priority
                   className="object-contain"
+                  sizes="(max-width: 768px) 90px, 180px"
                 />
               </div>
             </Link>
@@ -75,15 +74,14 @@ export default function Navbar() {
             >
               <Menu size={26} className="text-[#041423]" />
             </button>
-
           </div>
         </div>
       </header>
 
-      {/* Mobile Menu - premium light theme */}
+      {/* Mobile Menu - solid white background */}
       <div
         className={`
-          fixed top-0 right-0 h-full w-[300px] bg-white/95 backdrop-blur-xl shadow-2xl z-[999]
+          fixed top-0 right-0 h-full w-[300px] bg-white shadow-2xl z-[999]
           transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
           ${mobileOpen ? "translate-x-0" : "translate-x-full"}
         `}
@@ -126,7 +124,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Overlay for mobile */}
+      {/* Overlay for mobile - kept semi-transparent for clarity */}
       {mobileOpen && (
         <div
           className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[998] lg:hidden"

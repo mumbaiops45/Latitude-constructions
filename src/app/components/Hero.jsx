@@ -6,25 +6,25 @@ import { Play, ArrowRight } from "lucide-react";
 export default function Hero() {
   return (
     <section className="relative w-full h-screen overflow-hidden">
-      {/* Video Background */}
+      {/* Video Background – now with natural clarity */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/construction.mp4" type="video/mp4" />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#041423] to-[#1a3a2a]" />
+        <source src="/hero1.mp4" type="video/mp4" />
       </video>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#041423]/80 via-[#041423]/40 to-transparent" />
+      {/* Darker overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
 
       {/* Content – Centered */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
 
-        {/* Brand – LATITUDE with slow fade and gradient sweep */}
+        {/* Brand – LATITUDE with gradient sweep */}
         <div className="animate-soft-pop [animation-delay:0ms]">
           <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight leading-none">
             <span className="bg-clip-text text-transparent bg-[length:200%] bg-gradient-to-r from-[#7CEB1D] via-[#a8f05a] to-[#5ec70a] animate-gradient-shift">
@@ -33,24 +33,25 @@ export default function Hero() {
           </h1>
         </div>
 
-        {/* Sub-headline – slow slide up */}
+        {/* Main Headline – focused on Farm House */}
         <div className="animate-slide-up-slow [animation-delay:400ms]">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 leading-tight">
-            Build Your <span className="text-[#7CEB1D]">Dream Home</span>
+            Crafting Your <span className="text-[#7CEB1D]">Dream Farm House</span>
           </h2>
         </div>
 
-        {/* Tagline – slow fade with scale */}
+        {/* Tagline – farm house specialist */}
         <div className="animate-fade-scale-slow [animation-delay:800ms]">
-          <p className="text-xl sm:text-2xl md:text-3xl font-light text-gray-300 mt-1">
-            With Latitude
+          <p className="text-xl sm:text-2xl md:text-3xl font-light text-gray-200 mt-1">
+            Where Country Living Meets Luxury
           </p>
         </div>
 
-        {/* Description – slow blur reveal */}
+        {/* Description – farm house focused */}
         <div className="animate-blur-in-slow [animation-delay:1200ms] max-w-2xl">
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 mt-4 leading-relaxed">
-            Constructing dreams with precision. Experience housing solutions tailored to your life.
+          <p className="text-base sm:text-lg md:text-xl text-gray-200 mt-4 leading-relaxed">
+            From sprawling estates to cozy retreats – we design and build 
+            premium farm houses that blend rustic charm with modern comfort.
           </p>
         </div>
 
@@ -60,7 +61,7 @@ export default function Hero() {
             href="/projects"
             className="group inline-flex items-center gap-2 bg-[#7CEB1D] hover:bg-[#6cd816] text-[#041423] font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
           >
-            Explore Our Work
+            Explore Our Farm Houses
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
@@ -68,7 +69,7 @@ export default function Hero() {
             className="group inline-flex items-center gap-2 border-2 border-white/40 hover:border-[#7CEB1D] text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/10 hover:-translate-y-1"
           >
             <Play size={18} className="fill-[#7CEB1D] text-[#7CEB1D] group-hover:scale-110 transition-transform" />
-            Get a Quote
+            Request a Quote
           </Link>
         </div>
       </div>
@@ -81,7 +82,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ===== Animations ===== */}
+      {/* ===== Animations (unchanged) ===== */}
       <style>{`
         @keyframes softPop {
           0% { opacity: 0; transform: scale(0.92); }
