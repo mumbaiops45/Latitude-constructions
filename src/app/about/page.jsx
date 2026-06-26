@@ -132,7 +132,7 @@ const serviceAreas = [
 function StatCard({ stat, isInView, delay }) {
   const Icon = stat.icon;
   // 👇 Each card watches itself with a small rootMargin to trigger early
-  const { ref, isInView: cardInView } = useInView({ 
+  const { ref, isInView: cardInView } = useInView({
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px"
   });
@@ -146,11 +146,10 @@ function StatCard({ stat, isInView, delay }) {
   return (
     <div
       ref={ref}
-      className={`relative rounded-3xl bg-white/5 backdrop-blur-lg border border-white/10 p-8 shadow-xl hover-lift transition-all duration-500 ${
-        show
-          ? "opacity-100 translate-y-0 scale-100"
-          : "opacity-0 translate-y-12 scale-95"
-      }`}
+      className={`relative rounded-3xl bg-white/5 backdrop-blur-lg border border-white/10 p-8 shadow-xl hover-lift transition-all duration-500 ${show
+        ? "opacity-100 translate-y-0 scale-100"
+        : "opacity-0 translate-y-12 scale-95"
+        }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="w-14 h-14 rounded-2xl bg-[#7CEB1D]/10 flex items-center justify-center mb-4 border border-[#7CEB1D]/20 animate-badge-pulse">
@@ -325,26 +324,23 @@ export default function AboutPage() {
           </div>
           <div className="relative z-10 text-center text-white max-w-4xl px-4">
             <span
-              className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-4 transition-all duration-700 ${
-                sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
+              className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-4 transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
               style={{ transitionDelay: "100ms" }}
             >
               About Latitude
             </span>
             <h1
-              className={`text-5xl sm:text-6xl md:text-7xl font-bold leading-tight transition-all duration-700 animate-float-soft ${
-                sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+              className={`text-5xl sm:text-6xl md:text-7xl font-bold leading-tight transition-all duration-700 animate-float-soft ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                }`}
               style={{ transitionDelay: "200ms" }}
             >
               Building Farmhouse
               <span className="block animate-gradient-text">Dreams Since 2014</span>
             </h1>
             <p
-              className={`mt-6 text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto transition-all duration-700 ${
-                sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+              className={`mt-6 text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                }`}
               style={{ transitionDelay: "350ms" }}
             >
               We are a team of passionate architects, engineers, and builders
@@ -379,26 +375,23 @@ export default function AboutPage() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <span
-                  className={`text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-2 block transition-all duration-700 ${
-                    sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                  }`}
+                  className={`text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-2 block transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                    }`}
                   style={{ transitionDelay: "100ms" }}
                 >
                   Our Story
                 </span>
                 <h2
-                  className={`text-4xl md:text-5xl font-bold text-white leading-tight transition-all duration-700 ${
-                    sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                  }`}
+                  className={`text-4xl md:text-5xl font-bold text-white leading-tight transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                    }`}
                   style={{ transitionDelay: "200ms" }}
                 >
                   Crafting Farmhouse <span className="text-[#7CEB1D]">Excellence</span>
                 </h2>
                 <div className="space-y-4 mt-6 text-gray-300 leading-relaxed">
                   <p
-                    className={`transition-all duration-700 ${
-                      sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                    }`}
+                    className={`transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                      }`}
                     style={{ transitionDelay: "300ms" }}
                   >
                     Latitude Construction was founded in 2014 with a singular vision:
@@ -406,9 +399,8 @@ export default function AboutPage() {
                     sustainable farmhouses that respect the land and elevate country living.
                   </p>
                   <p
-                    className={`transition-all duration-700 ${
-                      sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                    }`}
+                    className={`transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                      }`}
                     style={{ transitionDelay: "400ms" }}
                   >
                     Over two decades, we have grown from a small team of architects
@@ -416,9 +408,8 @@ export default function AboutPage() {
                     across Karnataka, Tamil Nadu, and Kerala.
                   </p>
                   <p
-                    className={`transition-all duration-700 ${
-                      sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                    }`}
+                    className={`transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                      }`}
                     style={{ transitionDelay: "500ms" }}
                   >
                     Our expertise lies in understanding the unique needs of farmhouse
@@ -429,19 +420,17 @@ export default function AboutPage() {
                   </p>
                 </div>
                 <div
-                  className={`flex flex-wrap gap-8 mt-8 transition-all duration-700 ${
-                    sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                  }`}
+                  className={`flex flex-wrap gap-8 mt-8 transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                    }`}
                   style={{ transitionDelay: "600ms" }}
                 >
-                  
+
                 </div>
               </div>
 
               <div
-                className={`relative transition-all duration-700 ${
-                  sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-                }`}
+                className={`relative transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                  }`}
                 style={{ transitionDelay: "500ms" }}
               >
                 <div className="relative h-[450px] rounded-3xl overflow-hidden shadow-2xl border-2 border-[#7CEB1D]/20 image-shine">
@@ -490,11 +479,10 @@ export default function AboutPage() {
                   <div
                     key={area.name}
                     ref={ref}
-                    className={`service-card transition-all duration-700 ${
-                      isInView
-                        ? "opacity-100 translate-y-0 scale-100"
-                        : "opacity-0 translate-y-12 scale-95"
-                    }`}
+                    className={`service-card transition-all duration-700 ${isInView
+                      ? "opacity-100 translate-y-0 scale-100"
+                      : "opacity-0 translate-y-12 scale-95"
+                      }`}
                     style={{ transitionDelay: `${index * 80}ms` }}
                   >
                     <div className="icon-wrapper">
@@ -511,7 +499,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-      
+
 
         {/* ─── VALUES ──────────────────────────────────────────────────────── */}
         <section className="py-20 bg-gradient-to-b from-white to-[#f8fafc]">
@@ -530,11 +518,10 @@ export default function AboutPage() {
                   <div
                     key={index}
                     ref={ref}
-                    className={`bg-white rounded-2xl p-8 text-center border border-gray-100 shadow-sm card-hover transition-all duration-700 ${
-                      isInView
-                        ? "opacity-100 translate-y-0 scale-100"
-                        : "opacity-0 translate-y-12 scale-95"
-                    }`}
+                    className={`bg-white rounded-2xl p-8 text-center border border-gray-100 shadow-sm card-hover transition-all duration-700 ${isInView
+                      ? "opacity-100 translate-y-0 scale-100"
+                      : "opacity-0 translate-y-12 scale-95"
+                      }`}
                     style={{ transitionDelay: `${index * 120}ms` }}
                   >
                     <div className="w-16 h-16 rounded-full bg-[#7CEB1D]/10 flex items-center justify-center mx-auto mb-4">
@@ -549,10 +536,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        
-
         {/* ─── CTA ──────────────────────────────────────────────────────────── */}
-        <section className="py-20 bg-[#041423] text-white text-center relative overflow-hidden">
+        <section className="py-20 bg-[#365c41] text-white text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-dots pointer-events-none" />
           <div className="absolute top-[-20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#7CEB1D]/5 blur-3xl pointer-events-none animate-float-orb" />
           <div className="absolute bottom-[-30%] left-[-10%] w-[300px] h-[300px] rounded-full bg-[#7CEB1D]/10 blur-3xl pointer-events-none animate-float-orb" style={{ animationDelay: "2s" }} />
@@ -566,12 +551,15 @@ export default function AboutPage() {
               Let's talk about your vision – we're here to make it a reality.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+              {/* ─── PRIMARY CTA – matches gallery exactly ─────────────────── */}
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-3 bg-[#7CEB1D] hover:bg-[#6cd816] text-[#041423] font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
+                className="inline-flex items-center gap-3 bg-[#7CEB1D] hover:bg-[#6cd816] text-[#041423] font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 group"
               >
-                Get in Touch <ArrowRight size={18} />
+                Get in Touch
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
               </Link>
+              {/* ─── SECONDARY OUTLINE BUTTON (kept as is) ────────────────── */}
               <Link
                 href="/projects"
                 className="inline-flex items-center gap-2 border-2 border-white/30 hover:border-[#7CEB1D] text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/10 hover:-translate-y-1"

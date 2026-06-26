@@ -63,11 +63,6 @@ export default function ContactSection() {
             0%, 100% { transform: translate(0, 0) scale(1); }
             50% { transform: translate(30px, -40px) scale(1.1); }
           }
-          @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-          }
           @keyframes pulse-glow {
             0%, 100% { box-shadow: 0 0 0 0 rgba(124,235,29,0.3); }
             50% { box-shadow: 0 0 30px 8px rgba(124,235,29,0.15); }
@@ -106,18 +101,16 @@ export default function ContactSection() {
             color: #041423 !important;
           }
 
-          /* 👇 UNIQUE CLASS – won't conflict with other sections */
-          .contact-gradient-bg {
-            background: linear-gradient(135deg, #0a1929 0%, #041423 50%, #0a1a2e 100%);
-            background-size: 200% 200%;
-            animation: gradient-shift 12s ease infinite;
+          /* ─── New background: solid #365c41 ─────────────────────────── */
+          .contact-bg {
+            background: #365c41;
           }
         `}
       </style>
 
       <section
         ref={sectionRef}
-        className="py-20 relative overflow-hidden contact-gradient-bg text-white"
+        className="py-20 relative overflow-hidden contact-bg text-white"
       >
         {/* Floating decorative orbs */}
         <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#7CEB1D]/5 blur-3xl pointer-events-none animate-float-orb" />
