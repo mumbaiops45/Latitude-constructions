@@ -35,18 +35,35 @@ const quickLinks = [
   { name: "Home", path: "/" },
   { name: "About Us", path: "/about" },
   { name: "Services", path: "/services" },
-  { name: "Packages & Pricing", path: "/packages" },
-  { name: "Portfolio", path: "/projects" },
+  { name: "Projects", path: "/projects" },
   { name: "Contact", path: "/contact" },
 ];
 
 const footerServices = [
-  "Farmhouse Construction",
-  "Eco-Friendly Construction",
-  "Residential Turnkey",
-  "Commercial Projects",
-  "Interior Design",
-  "Renovation",
+  {
+    name: "Custom Farm House Design",
+    path: "/services",
+  },
+  {
+    name: "3D Farm Visualisation",
+    path: "/services",
+  },
+  {
+    name: "Estate & Land Planning",
+    path: "/services",
+  },
+  {
+    name: "Rustic Interior Design",
+    path: "/services",
+  },
+  {
+    name: "Farm House Renovation",
+    path: "/services",
+  },
+  {
+    name: "Sustainable Construction",
+    path: "/services",
+  },
 ];
 
 const socialLinks = [
@@ -147,11 +164,10 @@ export default function Footer() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
               {/* Brand Column */}
               <div
-                className={`transition-all duration-700 ${
-                  isInView
+                className={`transition-all duration-700 ${isInView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
-                }`}
+                  }`}
                 style={{ transitionDelay: "100ms" }}
               >
                 <div className="relative w-[150px] h-[95px]">
@@ -180,11 +196,10 @@ export default function Footer() {
 
               {/* Quick Links Column */}
               <div
-                className={`transition-all duration-700 ${
-                  isInView
+                className={`transition-all duration-700 ${isInView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
-                }`}
+                  }`}
                 style={{ transitionDelay: "200ms" }}
               >
                 <h3 className="text-lg font-bold mb-6 text-white footer-heading-underline">
@@ -207,23 +222,25 @@ export default function Footer() {
 
               {/* Services Column */}
               <div
-                className={`transition-all duration-700 ${
-                  isInView
+                className={`transition-all duration-700 ${isInView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
-                }`}
+                  }`}
                 style={{ transitionDelay: "300ms" }}
               >
                 <h3 className="text-lg font-bold mb-6 text-white footer-heading-underline">
                   Our Services
                 </h3>
                 <ul className="space-y-3">
-                  {footerServices.map((service, index) => (
-                    <li key={index}>
-                      <span className="text-gray-400 text-sm flex items-center gap-2">
-                        <span className="w-1 h-1 rounded-full bg-[#7CEB1D]/40" />
-                        {service}
-                      </span>
+                  {footerServices.map((service) => (
+                    <li key={service.name}>
+                      <Link
+                        href={service.path}
+                        className="text-gray-400 hover:text-[#7CEB1D] transition-all duration-300 text-sm flex items-center gap-2 group footer-link"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#7CEB1D]/30 group-hover:bg-[#7CEB1D]" />
+                        {service.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -231,11 +248,10 @@ export default function Footer() {
 
               {/* Contact Column */}
               <div
-                className={`transition-all duration-700 ${
-                  isInView
+                className={`transition-all duration-700 ${isInView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
-                }`}
+                  }`}
                 style={{ transitionDelay: "400ms" }}
               >
                 <h3 className="text-lg font-bold mb-6 text-white footer-heading-underline">
@@ -312,11 +328,10 @@ export default function Footer() {
           {/* Bottom Bar */}
           <div className="border-t border-white/10 pt-8 pb-6">
             <div
-              className={`flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left transition-all duration-700 ${
-                isInView
+              className={`flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left transition-all duration-700 ${isInView
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
-              }`}
+                }`}
               style={{ transitionDelay: "500ms" }}
             >
               <p className="text-gray-500 text-sm">
