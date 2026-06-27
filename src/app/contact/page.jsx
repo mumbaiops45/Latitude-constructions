@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
+import Head from "next/head";
 import {
   Phone,
   Mail,
@@ -67,6 +68,13 @@ export default function ContactPage() {
 
   return (
     <>
+      <Head>
+        <title>Contact Us - Latitude Construction | Farmhouse Builders</title>
+        <meta
+          name="description"
+          content="Get in touch with Latitude Construction for farmhouse design, consultation, and construction services across Hosur, Bangalore, and Tamil Nadu. Call or email us today."
+        />
+      </Head>
       <style>{`
         @keyframes float-soft {
           0%, 100% { transform: translateY(0px); }

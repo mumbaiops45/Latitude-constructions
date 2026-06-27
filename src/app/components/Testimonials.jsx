@@ -121,20 +121,20 @@ export default function Testimonials() {
 
       <section
         ref={sectionRef}
-        className="py-24 md:py-14 relative overflow-hidden animate-gradient-bg"
+        className="py-16 md:py-20 lg:py-24 relative overflow-hidden animate-gradient-bg"
       >
-        {/* Floating decorative orbs */}
-        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#7CEB1D]/5 blur-3xl pointer-events-none animate-float-orb" />
+        {/* Decorative orbs */}
+        <div className="absolute -top-40 -right-40 w-[300px] sm:w-[400px] lg:w-[500px] h-[300px] sm:h-[400px] lg:h-[500px] rounded-full bg-[#7CEB1D]/5 blur-3xl pointer-events-none animate-float-orb" />
         <div
-          className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-[#7CEB1D]/10 blur-3xl pointer-events-none animate-float-orb"
+          className="absolute -bottom-40 -left-40 w-[250px] sm:w-[350px] lg:w-[400px] h-[250px] sm:h-[350px] lg:h-[400px] rounded-full bg-[#7CEB1D]/10 blur-3xl pointer-events-none animate-float-orb"
           style={{ animationDelay: "3s" }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
-          {/* Heading – with staggered entrance + floating */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Heading */}
+          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
             <span
-              className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-3 transition-all duration-700 ${
+              className={`inline-block text-[#7CEB1D] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase mb-3 transition-all duration-700 ${
                 sectionInView
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
@@ -144,7 +144,7 @@ export default function Testimonials() {
               Testimonials
             </span>
             <h2
-              className={`text-4xl sm:text-5xl md:text-6xl font-bold text-[#041423] leading-tight transition-all duration-700 animate-float-soft ${
+              className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#041423] leading-tight transition-all duration-700 animate-float-soft ${
                 sectionInView
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-6"
@@ -154,7 +154,7 @@ export default function Testimonials() {
               What Our <span className="text-[#7CEB1D]">Clients Say</span>
             </h2>
             <p
-              className={`text-gray-600 mt-4 text-base md:text-lg max-w-xl mx-auto transition-all duration-700 ${
+              className={`text-gray-600 mt-3 sm:mt-4 text-sm sm:text-base md:text-lg max-w-xl mx-auto transition-all duration-700 ${
                 sectionInView
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-6"
@@ -165,43 +165,104 @@ export default function Testimonials() {
             </p>
           </div>
 
-          {/* Scrollable container – scrollbar hidden */}
-          <div className="overflow-x-auto pb-4 scroll-smooth no-scrollbar">
-            <div className="flex gap-6 md:gap-8">
+          {/* ----- Mobile: vertical stack (visible on xs) ----- */}
+          <div className="flex flex-col gap-6 sm:hidden">
+            {testimonials.map((testimonial, index) => {
+              const { ref, isInView } = useInView({ threshold: 0.3 });
+              return (
+                <div
+                  key={testimonial.id}
+                  ref={ref}
+                  className={`bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-all duration-700 ${
+                    isInView
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-12"
+                  }`}
+                  style={{
+                    transitionDelay: `${index * 100}ms`,
+                  }}
+                >
+                  <div className="flex gap-1 text-[#7CEB1D] mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={16} fill="#7CEB1D" stroke="none" />
+                    ))}
+                  </div>
+                  <p className="text-gray-700 text-sm leading-relaxed italic">
+                    "{testimonial.quote}"
+                  </p>
+                  <div className="flex items-center gap-4 mt-5">
+                    <Image
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      width={48}
+                      height={48}
+                      className="w-12 h-12 rounded-full"
+                    />
+                    <div>
+                      <p className="font-bold text-[#041423] text-sm">
+                        {testimonial.name}
+                      </p>
+                      <p className="text-xs text-gray-500">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* ----- Tablet & Desktop: horizontal scroll (hidden on mobile) ----- */}
+          <div className="hidden sm:block overflow-x-auto pb-4 scroll-smooth no-scrollbar snap-x snap-mandatory">
+            <div className="flex gap-4 sm:gap-6 md:gap-8">
               {testimonials.map((testimonial, index) => {
                 const { ref, isInView } = useInView({ threshold: 0.3 });
                 return (
                   <div
                     key={testimonial.id}
                     ref={ref}
-                    className={`flex-shrink-0 w-80 md:w-96 bg-white rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-2xl border border-gray-100 hover:border-[#7CEB1D]/50 transition-all duration-700 hover:-translate-y-2 transform-gpu ${
-                      isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                    className={`flex-shrink-0 w-80 md:w-96 lg:w-[22rem] snap-start bg-white rounded-2xl sm:rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-2xl border border-gray-100 hover:border-[#7CEB1D]/50 transition-all duration-700 hover:md:-translate-y-2 transform-gpu ${
+                      isInView
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-12"
                     }`}
                     style={{
                       transitionDelay: `${index * 100}ms`,
-                      transitionProperty: "opacity, transform, box-shadow, border-color",
-                      transform: isInView ? "translateY(0) rotateX(0deg)" : "translateY(40px) rotateX(-15deg)",
+                      transitionProperty:
+                        "opacity, transform, box-shadow, border-color",
+                      transform: isInView
+                        ? "translateY(0) rotateX(0deg)"
+                        : "translateY(40px) rotateX(-15deg)",
                       transformOrigin: "center bottom",
                     }}
                   >
-                    {/* Stars */}
                     <div className="flex gap-1 text-[#7CEB1D] mb-4">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={18} fill="#7CEB1D" stroke="none" />
+                        <Star
+                          key={i}
+                          size={18}
+                          fill="#7CEB1D"
+                          
+                          stroke="none"
+                        />
                       ))}
                     </div>
-                    <p className="text-gray-700 text-sm md:text-base leading-relaxed italic">"{testimonial.quote}"</p>
+                    <p className="text-gray-700 text-sm md:text-base leading-relaxed italic">
+                      "{testimonial.quote}"
+                    </p>
                     <div className="flex items-center gap-4 mt-6">
                       <Image
                         src={testimonial.avatar}
                         alt={testimonial.name}
                         width={48}
                         height={48}
-                        className="rounded-full"
+                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full"
                       />
                       <div>
-                        <p className="font-bold text-[#041423]">{testimonial.name}</p>
-                        <p className="text-xs text-gray-500">{testimonial.role}</p>
+                        <p className="font-bold text-[#041423]">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          {testimonial.role}
+                        </p>
                       </div>
                     </div>
                   </div>

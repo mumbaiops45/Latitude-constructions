@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useRef, useEffect, useState } from "react";
+import Head from "next/head";
 import {
   ArrowRight,
   MapPin,
@@ -166,6 +167,13 @@ export default function ProjectDetailsPage() {
 
   return (
     <>
+      <Head>
+        <title>{project.title} - Latitude Construction | Farmhouse Project</title>
+        <meta
+          name="description"
+          content={`Explore ${project.title} - a ${project.category} in ${project.location}. View features, gallery, and details of this farmhouse project by Latitude Construction.`}
+        />
+      </Head>
       <style>{`
         @keyframes float-soft {
           0%, 100% { transform: translateY(0px); }

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import { useRef, useEffect, useState } from "react";
 import {
   ArrowRight,
@@ -180,6 +181,13 @@ export default function AboutPage() {
 
   return (
     <>
+      <Head>
+        <title>About Us - Latitude Construction | Farmhouse Builders</title>
+        <meta
+          name="description"
+          content="Learn about Latitude Construction - 24+ years of experience in sustainable farmhouse design and construction across Karnataka, Tamil Nadu, and Kerala."
+        />
+      </Head>
       <style>{`
         @keyframes float-soft {
           0%, 100% { transform: translateY(0px); }

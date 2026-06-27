@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useEffect, useState, useMemo } from "react";
 import { ArrowRight, MapPin, Calendar, Search } from "lucide-react";
+import Head from "next/head";
 
 // ─── Custom hook (unchanged) ──────────────────────────────────────────────
 function useInView(options = {}) {
@@ -88,9 +89,8 @@ function ProjectCard({ project, index }) {
   return (
     <div
       ref={ref}
-      className={`project-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 ${
-        isInView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95"
-      }`}
+      className={`project-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 ${isInView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95"
+        }`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <Link href={`/projects/${project.id}`} className="block">
@@ -167,6 +167,13 @@ export default function ProjectsPage() {
 
   return (
     <>
+      <Head>
+        <title>Projects - Latitude Construction | Farmhouse Portfolio</title>
+        <meta
+          name="description"
+          content="Browse Latitude Construction's portfolio of luxury farmhouse projects. See our farmhouse designs, eco-friendly builds, and country homes across Karnataka, Tamil Nadu, and Kerala."
+        />
+      </Head>
       <style>{`
         @keyframes float-soft {
           0%, 100% { transform: translateY(0px); }

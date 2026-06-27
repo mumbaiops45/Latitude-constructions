@@ -13,7 +13,7 @@ import {
   ArrowRight,
   CheckCircle,
 } from "lucide-react";
-
+import Head from "next/head";
 function useInView(options = {}) {
   const ref = useRef(null);
   const [isInView, setIsInView] = useState(false);
@@ -101,6 +101,13 @@ export default function ServicesPage() {
 
   return (
     <>
+      <Head>
+        <title>Services - Latitude Construction | Farmhouse Design & Build</title>
+        <meta
+          name="description"
+          content="Explore Latitude Construction's farmhouse services – custom design, 3D visualisation, land planning, rustic interiors, renovation, and sustainable construction. Build your dream country estate."
+        />
+      </Head>
       <style>{`
         @keyframes float-soft {
           0%, 100% { transform: translateY(0px); }
@@ -179,26 +186,23 @@ export default function ServicesPage() {
 
           <div className="relative z-10 text-center text-white max-w-4xl px-4">
             <span
-              className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-4 transition-all duration-700 ${
-                sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
+              className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-4 transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
               style={{ transitionDelay: "100ms" }}
             >
               What We Offer
             </span>
             <h1
-              className={`text-5xl sm:text-6xl md:text-7xl font-bold leading-tight transition-all duration-700 animate-float-soft ${
-                sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+              className={`text-5xl sm:text-6xl md:text-7xl font-bold leading-tight transition-all duration-700 animate-float-soft ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                }`}
               style={{ transitionDelay: "200ms" }}
             >
               Our Farmhouse
               <span className="block text-[#7CEB1D]">Services</span>
             </h1>
             <p
-              className={`mt-6 text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto transition-all duration-700 ${
-                sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+              className={`mt-6 text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                }`}
               style={{ transitionDelay: "350ms" }}
             >
               End‑to‑end solutions for your dream country estate – from design to
@@ -223,11 +227,10 @@ export default function ServicesPage() {
                   <div
                     key={index}
                     ref={ref}
-                    className={`service-row bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-700 ${
-                      isInView
+                    className={`service-row bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-700 ${isInView
                         ? "opacity-100 translate-y-0 scale-100"
                         : "opacity-0 translate-y-12 scale-95"
-                    }`}
+                      }`}
                     style={{ transitionDelay: `${index * 120}ms` }}
                   >
                     <div className={`grid lg:grid-cols-2 ${isEven ? "" : "lg:grid-flow-dense"}`}>

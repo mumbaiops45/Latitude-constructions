@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
+import Head from "next/head";
 import {
   ArrowRight,
   Play,
@@ -66,7 +67,7 @@ const galleryItems = [
     location: "Bangalore, Karnataka",
     year: "2024",
     thumbnail: videoPlaceholder,
-    src: "/farmhouse1.mp4",
+    src: "/farmhouse4.mp4",
   },
   {
     id: 4,
@@ -224,6 +225,13 @@ export default function GalleryPage() {
 
   return (
     <>
+      <Head>
+        <title>Gallery - Latitude Construction | Farmhouse Projects</title>
+        <meta
+          name="description"
+          content="Explore Latitude Construction's gallery of luxury farmhouse designs, interiors, and video tours. See our portfolio of sustainable farmhouse projects across Karnataka and Tamil Nadu."
+        />
+      </Head>
       <style>{`
         /* ─── Use global brand colours ──────────────────────────────────── */
         :root {
@@ -473,26 +481,23 @@ export default function GalleryPage() {
 
           <div className="relative z-10 text-center text-white max-w-4xl px-4">
             <span
-              className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-4 transition-all duration-700 ${
-                sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
+              className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-4 transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
               style={{ transitionDelay: "100ms" }}
             >
               Our Portfolio
             </span>
             <h1
-              className={`text-5xl sm:text-6xl md:text-7xl font-bold leading-tight transition-all duration-700 animate-float-soft ${
-                sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+              className={`text-5xl sm:text-6xl md:text-7xl font-bold leading-tight transition-all duration-700 animate-float-soft ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                }`}
               style={{ transitionDelay: "200ms" }}
             >
               Farmhouse
               <span className="block text-[#7CEB1D]">Gallery</span>
             </h1>
             <p
-              className={`mt-6 text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto transition-all duration-700 ${
-                sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+              className={`mt-6 text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                }`}
               style={{ transitionDelay: "350ms" }}
             >
               Explore our collection of handcrafted farmhouses – each one a unique
@@ -514,9 +519,8 @@ export default function GalleryPage() {
                 <button
                   key={cat}
                   onClick={() => setFilter(cat)}
-                  className={`filter-btn px-6 py-2.5 rounded-full text-sm font-semibold ${
-                    filter === cat ? "active" : ""
-                  }`}
+                  className={`filter-btn px-6 py-2.5 rounded-full text-sm font-semibold ${filter === cat ? "active" : ""
+                    }`}
                 >
                   {cat}
                 </button>
@@ -531,11 +535,10 @@ export default function GalleryPage() {
                   <div
                     key={item.id}
                     ref={ref}
-                    className={`gallery-item bg-black shadow-sm hover:shadow-xl transition-shadow duration-500 ${
-                      isInView
+                    className={`gallery-item bg-black shadow-sm hover:shadow-xl transition-shadow duration-500 ${isInView
                         ? "opacity-100 translate-y-0 scale-100"
                         : "opacity-0 translate-y-12 scale-95"
-                    }`}
+                      }`}
                     style={{
                       transitionDelay: `${index * 80}ms`,
                       aspectRatio: item.type === "video" ? "16/9" : "4/3",
