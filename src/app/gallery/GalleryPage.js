@@ -192,6 +192,66 @@ const galleryItems = [
 
 const categories = ["All", "Exterior", "Interior", "Video"];
 
+// ─── Gallery Item Component ──────────────────────────────────────────────
+function GalleryItem({ item, index, onOpen }) {
+  const { ref, isInView } = useInView({ threshold: 0.1 }); // ✅ Hook called at top level
+
+  return (
+    <div
+      ref={ref}
+      className={`gallery-item bg-black shadow-sm hover:shadow-xl transition-shadow duration-500 ${
+        isInView
+          ? "opacity-100 translate-y-0 scale-100"
+          : "opacity-0 translate-y-12 scale-95"
+      }`}
+      style={{
+        transitionDelay: `${index * 80}ms`,
+        aspectRatio: item.type === "video" ? "16/9" : "4/3",
+      }}
+      onClick={() => onOpen(item)}
+    >
+      {item.type === "video" ? (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={item.thumbnail}
+          className="grid-video"
+        >
+          <source src={item.src} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      ) : (
+        <Image
+          src={item.thumbnail}
+          alt={item.title}
+          fill
+          className="gallery-thumb object-cover"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          onError={(e) => {
+            e.currentTarget.src = videoPlaceholder;
+          }}
+        />
+      )}
+      {item.type === "video" && (
+        <div className="video-badge">
+          <Play size={14} fill="currentColor" />
+          Video
+        </div>
+      )}
+      <div className="gallery-overlay">
+        <span className="category">{item.category}</span>
+        <span className="title">{item.title}</span>
+        <span className="location flex items-center gap-1">
+          <MapPin size={12} />
+          {item.location}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function GalleryPage() {
   const sectionRef = useRef(null);
   const [sectionInView, setSectionInView] = useState(false);
@@ -521,63 +581,14 @@ export default function GalleryPage() {
 
             {/* Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredItems.map((item, index) => {
-                const { ref, isInView } = useInView({ threshold: 0.1 });
-                return (
-                  <div
-                    key={item.id}
-                    ref={ref}
-                    className={`gallery-item bg-black shadow-sm hover:shadow-xl transition-shadow duration-500 ${isInView
-                        ? "opacity-100 translate-y-0 scale-100"
-                        : "opacity-0 translate-y-12 scale-95"
-                      }`}
-                    style={{
-                      transitionDelay: `${index * 80}ms`,
-                      aspectRatio: item.type === "video" ? "16/9" : "4/3",
-                    }}
-                    onClick={() => openLightbox(item)}
-                  >
-                    {item.type === "video" ? (
-                      <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        poster={item.thumbnail}
-                        className="grid-video"
-                      >
-                        <source src={item.src} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                    ) : (
-                      <Image
-                        src={item.thumbnail}
-                        alt={item.title}
-                        fill
-                        className="gallery-thumb object-cover"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        onError={(e) => {
-                          e.currentTarget.src = videoPlaceholder;
-                        }}
-                      />
-                    )}
-                    {item.type === "video" && (
-                      <div className="video-badge">
-                        <Play size={14} fill="currentColor" />
-                        Video
-                      </div>
-                    )}
-                    <div className="gallery-overlay">
-                      <span className="category">{item.category}</span>
-                      <span className="title">{item.title}</span>
-                      <span className="location flex items-center gap-1">
-                        <MapPin size={12} />
-                        {item.location}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
+              {filteredItems.map((item, index) => (
+                <GalleryItem
+                  key={item.id}
+                  item={item}
+                  index={index}
+                  onOpen={openLightbox}
+                />
+              ))}
             </div>
 
             {filteredItems.length === 0 && (
