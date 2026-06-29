@@ -4,7 +4,10 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 
 export const metadata = {
-  title: "Latitude Constructions",
+   title: {
+    default: "Latitude Constructions",
+    template: "%s | Latitude Constructions",
+  },
   description: "Brick by Brick, We Build Your Dream Home",
 };
 
