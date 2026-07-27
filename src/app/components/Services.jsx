@@ -19,42 +19,42 @@ const services = [
     title: "Custom Farm House Design",
     description:
       "Tailored architectural plans that blend rustic elegance with modern comfort, designed around your land and lifestyle.",
-    image: "/service1.jpg",
+    image: "/image1.jpeg",
   },
   {
     icon: PenTool,
     title: "3D Farm Visualisation",
     description:
       "Walk through your future farm house in immersive 3D – every room, view, and finish visualised before construction begins.",
-    image: "/service2.jpg",
+    image: "/image2.jpeg",
   },
   {
     icon: Ruler,
     title: "Estate & Land Planning",
     description:
       "Optimise your acreage with expert planning – from house placement and driveways to paddocks, gardens, and outbuildings.",
-    image: "/service3.jpg",
+    image: "/image3.jpeg",
   },
   {
     icon: Palette,
     title: "Rustic Interior Design",
     description:
       "Warm, inviting interiors that celebrate natural materials – wood, stone, and earthy tones – with a touch of luxury.",
-    image: "/service4.jpg",
+    image: "/image4.jpeg",
   },
   {
     icon: Hammer,
     title: "Farm House Renovation",
     description:
       "Breathe new life into old farm houses – preserving character while upgrading structure, energy efficiency, and aesthetics.",
-    image: "/service5.jpg",
+    image: "/image5.jpeg",
   },
   {
     icon: Sprout,
     title: "Sustainable Construction",
     description:
       "Eco-friendly building practices – solar passive design, rainwater harvesting, and local materials for a greener farm house.",
-    image: "/service6.jpg",
+    image: "/image6.jpeg",
   },
 ];
 
@@ -132,7 +132,7 @@ export default function ServicesSection() {
           /* Flip card styles */
           .flip-container {
             perspective: 1000px;
-            height: 420px;
+            height: 320px;
           }
           .flip-card {
             position: relative;
@@ -340,12 +340,12 @@ export default function ServicesSection() {
                   <div className="flip-card shadow-lg hover:shadow-2xl transition-shadow duration-500">
                     {/* FRONT – Image with overlay title */}
                     <div className="flip-front">
-                      <div className="image-wrapper">
+                      <div>
                         <Image
                           src={service.image}
                           alt={service.title}
                           fill
-                          className="object-cover"
+                          className="object-fill"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                         <div className="front-overlay">

@@ -25,7 +25,7 @@ const allProjects = [
     title: "Willow Creek Farmstead",
     category: "Luxury Farmhouse",
     location: "Coorg, Karnataka",
-    image: "/project1.jpg",
+    image: "/project11.jpg",
     year: "2025",
     description:
       "A sprawling 5-acre estate featuring a 6-bedroom farmhouse with a infinity pool, organic garden, and a private lake. Designed to blend seamlessly with the surrounding coffee plantations.",
@@ -37,14 +37,14 @@ const allProjects = [
       "Sustainable Materials",
       "Solar Panels",
     ],
-    gallery: ["/project1-1.jpg", "/project1-2.jpg", "/project1-3.jpg"],
+    gallery: ["/image7.jpeg", "/image8.jpeg", "/image9.jpeg"],
   },
   {
     id: 2,
     title: "Golden Harvest Estate",
     category: "Farmhouse Villa",
     location: "Mysore, Karnataka",
-    image: "/project2.jpg",
+    image: "/project12.jpg",
     year: "2024",
     description:
       "A 3-bedroom villa set on 2 acres of land with a mango orchard, outdoor kitchen, and a traditional courtyard. Perfect for weekend getaways and family gatherings.",
@@ -55,14 +55,14 @@ const allProjects = [
       "Courtyard",
       "Rainwater Harvesting",
     ],
-    gallery: ["/project2-1.jpg", "/project2-2.jpg", "/project2-3.jpg"],
+    gallery: ["/image10.jpeg", "/image16.jpeg", "/image17.jpeg"],
   },
   {
     id: 3,
     title: "Rustic Pines Retreat",
     category: "Country Home",
     location: "Ooty, Tamil Nadu",
-    image: "/project3.jpg",
+    image: "/project13.jpg",
     year: "2024",
     description:
       "A cozy 4-bedroom farmhouse with a wrap-around veranda, stone fireplace, and breathtaking views of the Nilgiri hills. Built with reclaimed wood and local stone.",
@@ -73,14 +73,14 @@ const allProjects = [
       "Mountain Views",
       "Reclaimed Wood",
     ],
-    gallery: ["/project3-1.jpg", "/project3-2.jpg", "/project3-3.jpg"],
+    gallery: ["/image18.jpeg", "/image19.jpeg", "/image15.jpeg"],
   },
   {
     id: 4,
     title: "Sunrise Valley Homestead",
     category: "Farmhouse Estate",
     location: "Chikmagalur, Karnataka",
-    image: "/project4.jpg",
+    image: "/project14.jpg",
     year: "2023",
     description:
       "A 5-bedroom estate on 10 acres of coffee plantation, featuring a state-of-the-art kitchen, wine cellar, and a helipad. Designed for luxury and privacy.",
@@ -91,14 +91,14 @@ const allProjects = [
       "Coffee Plantation",
       "Smart Home Technology",
     ],
-    gallery: ["/project4-1.jpg", "/project4-2.jpg", "/project4-3.jpg"],
+    gallery: ["/image1.jpeg", "/image14.jpeg", "/image13.jpeg"],
   },
   {
     id: 5,
     title: "Cedar Grove Manor",
     category: "Luxury Farmhouse",
     location: "Wayanad, Kerala",
-    image: "/project5.jpg",
+    image: "/project15.jpg",
     year: "2023",
     description:
       "A 6-bedroom manor with a swimming pool, tennis court, and a private waterfall. Surrounded by dense forest and wildlife, this property offers complete seclusion.",
@@ -109,14 +109,14 @@ const allProjects = [
       "Private Waterfall",
       "Forest View",
     ],
-    gallery: ["/project5-1.jpg", "/project5-2.jpg", "/project5-3.jpg"],
+    gallery: ["/image17.jpeg", "/image12.jpeg", "/image11.jpeg"],
   },
   {
     id: 6,
     title: "Meadow View Farm",
     category: "Eco Farmhouse",
     location: "Pune, Maharashtra",
-    image: "/project6.jpg",
+    image: "/project16.jpg",
     year: "2022",
     description:
       "A 4-bedroom eco-friendly farmhouse with a solar power system, rainwater harvesting, and a permaculture garden. Built entirely with sustainable materials.",
@@ -127,7 +127,7 @@ const allProjects = [
       "Rainwater Harvesting",
       "Recycled Materials",
     ],
-    gallery: ["/project6-1.jpg", "/project6-2.jpg", "/project6-3.jpg"],
+    gallery: ["/image5.jpeg", "/image6.jpeg", "/image19.jpeg"],
   },
 ];
 
@@ -318,7 +318,7 @@ export default function ProjectDetailsPage() {
                     src={img}
                     alt={`${project.title} - Image ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-fill"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>

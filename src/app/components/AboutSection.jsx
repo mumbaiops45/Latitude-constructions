@@ -210,15 +210,16 @@ export default function AboutSection() {
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
+            
             {/* LEFT IMAGE */}
             <div className="relative">
-              <div className="relative rounded-[30px] overflow-hidden shadow-2xl h-[620px] border-2 border-[#7CEB1D]/20 image-shine hover:scale-[1.02] transition-transform duration-500">
+              <div className="relative rounded-[45px] overflow-hidden shadow-2xl h-[620px] border-2 border-[#7CEB1D]/20 hover:scale-[1.02] transition-transform duration-500">
                 <Image
-                  src="/about1.jpg"
+                  src="/image6.jpeg"
                   alt="Latitude Farm House Construction"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 1034px) 100vw, 50vw"
                 />
                 <div className="absolute top-6 left-6 bg-[#7CEB1D] text-[#041423] font-bold px-5 py-2 rounded-full text-sm shadow-lg animate-badge-pulse">
                   <span className="flex items-center gap-2">
@@ -229,7 +230,7 @@ export default function AboutSection() {
 
               {/* Floating Experience Card – updated text */}
               <div
-                className={`absolute -bottom-8 -left-8 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-8 w-64 border border-[#7CEB1D]/30 transition-all duration-1000 animate-float-soft ${isInView
+                className={`absolute -bottom-28 -left-12 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-8 w-42 border border-[#7CEB1D]/30 transition-all duration-1000 animate-float-soft ${isInView
                     ? "opacity-100 translate-y-0 scale-100"
                     : "opacity-0 translate-y-8 scale-95"
                   }`}

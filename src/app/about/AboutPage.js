@@ -373,7 +373,8 @@ export default function AboutPage() {
           <div className="absolute top-[-20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#7CEB1D]/5 blur-3xl pointer-events-none animate-float-orb" />
 
           <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* <div className="grid lg:grid-cols-2 gap-16 items-center"> */}
+              <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div>
                 <span
                   className={`text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-2 block transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -434,16 +435,16 @@ export default function AboutPage() {
                   }`}
                 style={{ transitionDelay: "500ms" }}
               >
-                <div className="relative h-[450px] rounded-3xl overflow-hidden shadow-2xl border-2 border-[#7CEB1D]/20 image-shine">
+                <div className="relative h-[450px] sm:h-[500px] lg:h-[520px]  rounded-3xl overflow-hidden shadow-2xl border-2 border-[#7CEB1D]/20">
                   <Image
-                    src="/about2.jpg"
+                    src="/image15.jpeg"
                     alt="Latitude Construction team at work"
                     fill
-                    className="object-cover"
+                    className="object-fill"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 </div>
-                <div className="absolute -bottom-6 -right-6 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-5 border border-[#7CEB1D]/30 animate-float-soft">
+                <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-5 border border-[#7CEB1D]/30 animate-float-soft">
                   <div className="flex items-center gap-3">
                     <Sparkles className="text-[#7CEB1D]" size={24} />
                     <div>

@@ -39,7 +39,7 @@ const services = [
     title: "Custom Farm House Design",
     description:
       "Tailored architectural plans that blend rustic elegance with modern comfort, designed around your land and lifestyle.",
-    image: "/service1.jpg",
+    image: "/image1.jpeg",
     features: ["Site Analysis & Assessment", "Concept & Schematic Design", "Detailed Construction Drawings", "Permit & Approval Assistance"],
   },
   {
@@ -47,7 +47,7 @@ const services = [
     title: "3D Farm Visualisation",
     description:
       "Walk through your future farm house in immersive 3D – every room, view, and finish visualised before construction begins.",
-    image: "/service2.jpg",
+    image: "/image2.jpeg",
     features: ["3D Walkthrough Animations", "Virtual Reality Tours", "Material & Finish Selection", "Daylight & Lighting Studies"],
   },
   {
@@ -55,7 +55,7 @@ const services = [
     title: "Estate & Land Planning",
     description:
       "Optimise your acreage with expert planning – from house placement and driveways to paddocks, gardens, and outbuildings.",
-    image: "/service3.jpg",
+    image: "/image3.jpeg",
     features: ["Land Surveying & Topography", "Zoning & Regulatory Compliance", "Infrastructure & Utility Planning", "Landscape & Garden Design"],
   },
   {
@@ -63,7 +63,7 @@ const services = [
     title: "Rustic Interior Design",
     description:
       "Warm, inviting interiors that celebrate natural materials – wood, stone, and earthy tones – with a touch of luxury.",
-    image: "/service4.jpg",
+    image: "/image4.jpeg",
     features: ["Space Planning & Layout", "Material & Finish Selection", "Custom Furniture Design", "Lighting & Ambience Design"],
   },
   {
@@ -71,7 +71,7 @@ const services = [
     title: "Farm House Renovation",
     description:
       "Breathe new life into old farm houses – preserving character while upgrading structure, energy efficiency, and aesthetics.",
-    image: "/service5.jpg",
+    image: "/image5.jpeg",
     features: ["Structural Assessment & Repairs", "Heritage & Character Preservation", "Modern Systems Upgrades", "Energy Efficiency Retrofitting"],
   },
   {
@@ -79,7 +79,7 @@ const services = [
     title: "Sustainable Construction",
     description:
       "Eco-friendly building practices – solar passive design, rainwater harvesting, and local materials for a greener farm house.",
-    image: "/service6.jpg",
+    image: "/image6.jpeg",
     features: ["Solar Passive Design", "Rainwater Harvesting Systems", "Natural Ventilation & Insulation", "Local & Sustainable Materials"],
   },
 ];
@@ -233,7 +233,7 @@ export default function ServicesPage() {
                           src={service.image}
                           alt={service.title}
                           fill
-                          className="object-cover"
+                          className="object-fill"
                           sizes="(max-width: 1024px) 100vw, 50vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 lg:opacity-100" />

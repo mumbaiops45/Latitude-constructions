@@ -32,7 +32,7 @@ const allProjects = [
     title: "Willow Creek Farmstead",
     category: "Luxury Farmhouse",
     location: "Coorg, Karnataka",
-    image: "/project1.jpg",
+    image: "/image11.jpeg",
     year: "2025",
     description: "A sprawling 5-acre estate featuring a 6-bedroom farmhouse...",
   },
@@ -41,7 +41,7 @@ const allProjects = [
     title: "Golden Harvest Estate",
     category: "Farmhouse Villa",
     location: "Mysore, Karnataka",
-    image: "/project2.jpg",
+    image: "/image12.jpeg",
     year: "2024",
   },
   {
@@ -49,7 +49,7 @@ const allProjects = [
     title: "Rustic Pines Retreat",
     category: "Country Home",
     location: "Ooty, Tamil Nadu",
-    image: "/project3.jpg",
+    image: "/image13.jpeg",
     year: "2024",
   },
   {
@@ -57,7 +57,7 @@ const allProjects = [
     title: "Sunrise Valley Homestead",
     category: "Farmhouse Estate",
     location: "Chikmagalur, Karnataka",
-    image: "/project4.jpg",
+    image: "/image14.jpeg",
     year: "2023",
   },
   {
@@ -65,7 +65,7 @@ const allProjects = [
     title: "Cedar Grove Manor",
     category: "Luxury Farmhouse",
     location: "Wayanad, Kerala",
-    image: "/project5.jpg",
+    image: "/image15.jpeg",
     year: "2023",
   },
   {
@@ -73,7 +73,7 @@ const allProjects = [
     title: "Meadow View Farm",
     category: "Eco Farmhouse",
     location: "Pune, Maharashtra",
-    image: "/project6.jpg",
+    image: "/image16.jpeg",
     year: "2022",
   },
 ];

@@ -36,7 +36,7 @@ const projects = [
     title: "Willow Creek Farmstead",
     category: "Luxury Farmhouse",
     location: "Coorg, Karnataka",
-    image: "/project1.jpg",
+    image: "/image11.jpeg",
     year: "2025",
   },
   {
@@ -44,7 +44,7 @@ const projects = [
     title: "Golden Harvest Estate",
     category: "Farmhouse Villa",
     location: "Mysore, Karnataka",
-    image: "/project2.jpg",
+    image: "/image12.jpeg",
     year: "2024",
   },
   {
@@ -52,7 +52,7 @@ const projects = [
     title: "Rustic Pines Retreat",
     category: "Country Home",
     location: "Ooty, Tamil Nadu",
-    image: "/project3.jpg",
+    image: "/image13.jpeg",
     year: "2024",
   },
   {
@@ -60,7 +60,7 @@ const projects = [
     title: "Sunrise Valley Homestead",
     category: "Farmhouse Estate",
     location: "Chikmagalur, Karnataka",
-    image: "/project4.jpg",
+    image: "/image14.jpeg",
     year: "2023",
   },
   {
@@ -68,7 +68,7 @@ const projects = [
     title: "Cedar Grove Manor",
     category: "Luxury Farmhouse",
     location: "Wayanad, Kerala",
-    image: "/project5.jpg",
+    image: "/image15.jpeg",
     year: "2023",
   },
   {
@@ -76,7 +76,7 @@ const projects = [
     title: "Meadow View Farm",
     category: "Eco Farmhouse",
     location: "Pune, Maharashtra",
-    image: "/project6.jpg",
+    image: "/image16.jpeg",
     year: "2022",
   },
 ];
@@ -181,7 +181,7 @@ export default function ProjectsSection() {
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="object-fill transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center">
