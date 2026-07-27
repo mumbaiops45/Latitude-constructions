@@ -79,7 +79,7 @@ const services = [
     title: "Sustainable Construction",
     description:
       "Eco-friendly building practices – solar passive design, rainwater harvesting, and local materials for a greener farm house.",
-    image: "/image6.jpeg",
+    image: "/image7.jpeg",
     features: ["Solar Passive Design", "Rainwater Harvesting Systems", "Natural Ventilation & Insulation", "Local & Sustainable Materials"],
   },
 ];
