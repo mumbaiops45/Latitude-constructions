@@ -4,7 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useRef, useEffect, useState } from "react";
-import Head from "next/head";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { projects } from "../projectData";
 import {
   ArrowRight,
   MapPin,
@@ -18,123 +23,9 @@ import {
   Mail,
 } from "lucide-react";
 
-// ─── Same projects data (you can move to a shared file later) ──────────
-const allProjects = [
-  {
-    id: 1,
-    title: "Willow Creek Farmstead",
-    category: "Luxury Farmhouse",
-    location: "Coorg, Karnataka",
-    image: "/project11.jpg",
-    year: "2025",
-    description:
-      "A sprawling 5-acre estate featuring a 6-bedroom farmhouse with a infinity pool, organic garden, and a private lake. Designed to blend seamlessly with the surrounding coffee plantations.",
-    features: [
-      "6 Bedrooms",
-      "Infinity Pool",
-      "Organic Garden",
-      "Private Lake",
-      "Sustainable Materials",
-      "Solar Panels",
-    ],
-    gallery: ["/image7.jpeg", "/image8.jpeg", "/image9.jpeg"],
-  },
-  {
-    id: 2,
-    title: "Golden Harvest Estate",
-    category: "Farmhouse Villa",
-    location: "Mysore, Karnataka",
-    image: "/project12.jpg",
-    year: "2024",
-    description:
-      "A 3-bedroom villa set on 2 acres of land with a mango orchard, outdoor kitchen, and a traditional courtyard. Perfect for weekend getaways and family gatherings.",
-    features: [
-      "3 Bedrooms",
-      "Mango Orchard",
-      "Outdoor Kitchen",
-      "Courtyard",
-      "Rainwater Harvesting",
-    ],
-    gallery: ["/image10.jpeg", "/image16.jpeg", "/image17.jpeg"],
-  },
-  {
-    id: 3,
-    title: "Rustic Pines Retreat",
-    category: "Country Home",
-    location: "Ooty, Tamil Nadu",
-    image: "/project13.jpg",
-    year: "2024",
-    description:
-      "A cozy 4-bedroom farmhouse with a wrap-around veranda, stone fireplace, and breathtaking views of the Nilgiri hills. Built with reclaimed wood and local stone.",
-    features: [
-      "4 Bedrooms",
-      "Stone Fireplace",
-      "Wrap-around Veranda",
-      "Mountain Views",
-      "Reclaimed Wood",
-    ],
-    gallery: ["/image18.jpeg", "/image19.jpeg", "/image15.jpeg"],
-  },
-  {
-    id: 4,
-    title: "Sunrise Valley Homestead",
-    category: "Farmhouse Estate",
-    location: "Chikmagalur, Karnataka",
-    image: "/project14.jpg",
-    year: "2023",
-    description:
-      "A 5-bedroom estate on 10 acres of coffee plantation, featuring a state-of-the-art kitchen, wine cellar, and a helipad. Designed for luxury and privacy.",
-    features: [
-      "5 Bedrooms",
-      "Wine Cellar",
-      "Helipad",
-      "Coffee Plantation",
-      "Smart Home Technology",
-    ],
-    gallery: ["/image1.jpeg", "/image14.jpeg", "/image13.jpeg"],
-  },
-  {
-    id: 5,
-    title: "Cedar Grove Manor",
-    category: "Luxury Farmhouse",
-    location: "Wayanad, Kerala",
-    image: "/project15.jpg",
-    year: "2023",
-    description:
-      "A 6-bedroom manor with a swimming pool, tennis court, and a private waterfall. Surrounded by dense forest and wildlife, this property offers complete seclusion.",
-    features: [
-      "6 Bedrooms",
-      "Swimming Pool",
-      "Tennis Court",
-      "Private Waterfall",
-      "Forest View",
-    ],
-    gallery: ["/image17.jpeg", "/image12.jpeg", "/image11.jpeg"],
-  },
-  {
-    id: 6,
-    title: "Meadow View Farm",
-    category: "Eco Farmhouse",
-    location: "Pune, Maharashtra",
-    image: "/project16.jpg",
-    year: "2022",
-    description:
-      "A 4-bedroom eco-friendly farmhouse with a solar power system, rainwater harvesting, and a permaculture garden. Built entirely with sustainable materials.",
-    features: [
-      "4 Bedrooms",
-      "Solar Power",
-      "Permaculture Garden",
-      "Rainwater Harvesting",
-      "Recycled Materials",
-    ],
-    gallery: ["/image5.jpeg", "/image6.jpeg", "/image19.jpeg"],
-  },
-];
-
 export default function ProjectDetailsPage() {
   const params = useParams();
-  const id = parseInt(params.id);
-  const project = allProjects.find((p) => p.id === id);
+  const project = projects.find((item) => item.id === params.id);
 
   const [sectionInView, setSectionInView] = useState(false);
   const sectionRef = useRef(null);
@@ -167,13 +58,6 @@ export default function ProjectDetailsPage() {
 
   return (
     <>
-      <Head>
-        <title>{project.title} - Latitude Construction | Farmhouse Project</title>
-        <meta
-          name="description"
-          content={`Explore ${project.title} - a ${project.category} in ${project.location}. View features, gallery, and details of this farmhouse project by Latitude Construction.`}
-        />
-      </Head>
       <style>{`
         @keyframes float-soft {
           0%, 100% { transform: translateY(0px); }
@@ -229,7 +113,7 @@ export default function ProjectDetailsPage() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight animate-float-soft">
               {project.title}
             </h1>
-            <div className="flex flex-wrap items-center justify-center gap-6 mt-6 text-gray-300">
+            {/* <div className="flex flex-wrap items-center justify-center gap-6 mt-6 text-gray-300">
               <span className="flex items-center gap-2">
                 <MapPin size={18} className="text-[#7CEB1D]" />
                 {project.location}
@@ -238,7 +122,7 @@ export default function ProjectDetailsPage() {
                 <Calendar size={18} className="text-[#7CEB1D]" />
                 {project.year}
               </span>
-            </div>
+            </div> */}
           </div>
         </section>
 
@@ -311,19 +195,29 @@ export default function ProjectDetailsPage() {
             <h2 className="text-3xl font-bold text-[#041423] text-center mb-12">
               Project <span className="text-[#7CEB1D]">Gallery</span>
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {project.gallery.map((img, index) => (
-                <div key={index} className="gallery-image relative aspect-[4/3] bg-gray-200">
-                  <Image
-                    src={img}
-                    alt={`${project.title} - Image ${index + 1}`}
-                    fill
-                    className="object-fill"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
+            <Swiper
+              modules={[Navigation, Pagination]}
+              navigation={project.images.length > 1}
+              pagination={{ clickable: true }}
+              spaceBetween={24}
+              slidesPerView={1}
+              breakpoints={{ 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }}
+              className="project-gallery-slider !pb-12"
+            >
+              {project.images.map((img, index) => (
+                <SwiperSlide key={img}>
+                  <div className="gallery-image relative aspect-[4/3] bg-gray-200">
+                    <Image
+                      src={img}
+                      alt={`${project.title} - Image ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                </SwiperSlide>
               ))}
-            </div>
+            </Swiper>
           </div>
         </section>
 

@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useEffect, useState, useMemo } from "react";
-import { ArrowRight, MapPin, Calendar, Search } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
+import { projects, projectCategories } from "./projectData";
 
 // ─── Custom hook (unchanged) ──────────────────────────────────────────────
 function useInView(options = {}) {
@@ -26,81 +27,117 @@ function useInView(options = {}) {
 }
 
 // ─── Projects Data ────────────────────────────────────────────────────────
-const allProjects = [
-  {
-    id: 1,
-    title: "Willow Creek Farmstead",
-    category: "Luxury Farmhouse",
-    location: "Coorg, Karnataka",
-    image: "/image11.jpeg",
-    year: "2025",
-    description: "A sprawling 5-acre estate featuring a 6-bedroom farmhouse...",
-  },
-  {
-    id: 2,
-    title: "Golden Harvest Estate",
-    category: "Farmhouse Villa",
-    location: "Mysore, Karnataka",
-    image: "/image12.jpeg",
-    year: "2024",
-  },
-  {
-    id: 3,
-    title: "Rustic Pines Retreat",
-    category: "Country Home",
-    location: "Ooty, Tamil Nadu",
-    image: "/image13.jpeg",
-    year: "2024",
-  },
-  {
-    id: 4,
-    title: "Sunrise Valley Homestead",
-    category: "Farmhouse Estate",
-    location: "Chikmagalur, Karnataka",
-    image: "/image14.jpeg",
-    year: "2023",
-  },
-  {
-    id: 5,
-    title: "Cedar Grove Manor",
-    category: "Luxury Farmhouse",
-    location: "Wayanad, Kerala",
-    image: "/image15.jpeg",
-    year: "2023",
-  },
-  {
-    id: 6,
-    title: "Meadow View Farm",
-    category: "Eco Farmhouse",
-    location: "Pune, Maharashtra",
-    image: "/image16.jpeg",
-    year: "2022",
-  },
-];
-
-// ─── Extract unique categories from data ──────────────────────────────
-const allCategories = ["All", ...new Set(allProjects.map((p) => p.category))];
-
 // ─── Project Card Component (each card uses its own useInView) ──────────
 function ProjectCard({ project, index }) {
   const { ref, isInView } = useInView({ threshold: 0.1 });
+  const [activeImage, setActiveImage] = useState(0);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+
+  const showControls = project.images.length > 1;
+
+  useEffect(() => {
+    if (!isGalleryOpen) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setIsGalleryOpen(false);
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        setActiveImage((current) => (current + 1) % project.images.length);
+      }
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        setActiveImage((current) => (current - 1 + project.images.length) % project.images.length);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isGalleryOpen, project.images.length]);
+
+  const openGallery = (event, imageIndex = 0) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setActiveImage(imageIndex);
+    setIsGalleryOpen(true);
+  };
+
+  const closeGallery = (event) => {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    setIsGalleryOpen(false);
+  };
+
+  const goToNextImage = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setActiveImage((current) => (current + 1) % project.images.length);
+  };
+
+  const goToPrevImage = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setActiveImage((current) => (current - 1 + project.images.length) % project.images.length);
+  };
 
   return (
     <div
       ref={ref}
-      className={`project-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 ${isInView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95"
+      className={`project-card group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 ${isInView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95"
         }`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <Link href={`/projects/${project.id}`} className="block">
-        <div className="image-wrapper relative aspect-[4/3] w-full bg-gray-200 rounded-t-2xl overflow-hidden">
+        <div
+          className="image-wrapper relative aspect-[4/3] w-full bg-gray-200 rounded-t-2xl overflow-hidden cursor-pointer"
+          onClick={(event) => openGallery(event, activeImage)}
+        >
           <Image
-            src={project.image}
-            alt={project.title}
+            src={project.images[activeImage] || project.images[0]}
+            alt={`${project.title} - image ${activeImage + 1}`}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
+
+          {showControls && (
+            <>
+              <button
+                type="button"
+                onClick={goToPrevImage}
+                className="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition hover:bg-black/70"
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button
+                type="button"
+                onClick={goToNextImage}
+                className="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition hover:bg-black/70"
+                aria-label="Next image"
+              >
+                <ChevronRight size={18} />
+              </button>
+
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                {project.images.map((image, imageIndex) => (
+                  <button
+                    key={`${project.id}-${image}`}
+                    type="button"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      setActiveImage(imageIndex);
+                    }}
+                    className={`h-2.5 w-2.5 rounded-full transition ${activeImage === imageIndex ? "bg-[#7CEB1D]" : "bg-white/70"}`}
+                    aria-label={`View image ${imageIndex + 1}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-t-2xl">
             <span className="bg-[#7CEB1D] text-[#041423] font-semibold px-6 py-3 rounded-full shadow-lg flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
               View Details <ArrowRight size={18} />
@@ -114,18 +151,72 @@ function ProjectCard({ project, index }) {
           <h3 className="text-xl font-bold text-[#041423] group-hover:text-[#7CEB1D] transition-colors duration-300">
             {project.title}
           </h3>
-          <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
-            <span className="flex items-center gap-1">
-              <MapPin size={14} />
-              {project.location}
-            </span>
-            <span className="flex items-center gap-1">
-              <Calendar size={14} />
-              {project.year}
-            </span>
-          </div>
         </div>
       </Link>
+
+      {isGalleryOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 px-4 py-6"
+          onClick={closeGallery}
+        >
+          <div className="relative w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
+            <button
+              type="button"
+              onClick={closeGallery}
+              className="absolute right-2 top-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#041423] shadow-lg transition hover:bg-white"
+              aria-label="Close gallery"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-black">
+              <Image
+                src={project.images[activeImage] || project.images[0]}
+                alt={`${project.title} - image ${activeImage + 1}`}
+                fill
+                className="object-contain"
+                sizes="100vw"
+              />
+            </div>
+
+            {showControls && (
+              <div className="mt-4 flex items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={(event) => goToPrevImage(event)}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#041423] shadow-lg transition hover:bg-white"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <div className="flex items-center gap-2 rounded-full bg-black/40 px-3 py-2 backdrop-blur-sm">
+                  {project.images.map((image, imageIndex) => (
+                    <button
+                      key={`${project.id}-gallery-${image}`}
+                      type="button"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        setActiveImage(imageIndex);
+                      }}
+                      className={`h-2.5 w-2.5 rounded-full transition ${activeImage === imageIndex ? "bg-[#7CEB1D]" : "bg-white/70"}`}
+                      aria-label={`View image ${imageIndex + 1}`}
+                    />
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={(event) => goToNextImage(event)}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#041423] shadow-lg transition hover:bg-white"
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -149,7 +240,7 @@ export default function ProjectsPage() {
 
   // ─── Memoized filtered projects ──────────────────────────────────────
   const filteredProjects = useMemo(() => {
-    return allProjects.filter((project) => {
+    return projects.filter((project) => {
       const categoryMatch =
         filter === "All" ||
         project.category.trim().toLowerCase() === filter.trim().toLowerCase();
@@ -275,7 +366,7 @@ export default function ProjectsPage() {
             {/* Filters & Search */}
             <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-12">
               <div className="flex flex-wrap gap-3 justify-center">
-                {allCategories.map((cat) => (
+                {projectCategories.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setFilter(cat)}

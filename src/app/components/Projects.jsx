@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, MapPin, Calendar } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
+import { projects as portfolioProjects } from "../projects/projectData";
 
 function useInView(options = {}) {
   const ref = useRef(null);
@@ -30,56 +31,7 @@ function useInView(options = {}) {
   return { ref, isInView };
 }
 
-const projects = [
-  {
-    id: 1,
-    title: "Willow Creek Farmstead",
-    category: "Luxury Farmhouse",
-    location: "Coorg, Karnataka",
-    image: "/image11.jpeg",
-    year: "2025",
-  },
-  {
-    id: 2,
-    title: "Golden Harvest Estate",
-    category: "Farmhouse Villa",
-    location: "Mysore, Karnataka",
-    image: "/image12.jpeg",
-    year: "2024",
-  },
-  {
-    id: 3,
-    title: "Rustic Pines Retreat",
-    category: "Country Home",
-    location: "Ooty, Tamil Nadu",
-    image: "/image13.jpeg",
-    year: "2024",
-  },
-  {
-    id: 4,
-    title: "Sunrise Valley Homestead",
-    category: "Farmhouse Estate",
-    location: "Chikmagalur, Karnataka",
-    image: "/image14.jpeg",
-    year: "2023",
-  },
-  {
-    id: 5,
-    title: "Cedar Grove Manor",
-    category: "Luxury Farmhouse",
-    location: "Wayanad, Kerala",
-    image: "/image15.jpeg",
-    year: "2023",
-  },
-  {
-    id: 6,
-    title: "Meadow View Farm",
-    category: "Eco Farmhouse",
-    location: "Pune, Maharashtra",
-    image: "/image16.jpeg",
-    year: "2022",
-  },
-];
+const featuredProjects = portfolioProjects.slice(0, 6);
 
 export default function ProjectsSection() {
   const sectionRef = useRef(null);
@@ -159,7 +111,7 @@ export default function ProjectsSection() {
 
           {/* Projects Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => {
+            {featuredProjects.map((project, index) => {
               const { ref, isInView } = useInView({ threshold: 0.15 });
 
               return (
@@ -175,10 +127,10 @@ export default function ProjectsSection() {
                     transitionProperty: "opacity, transform, box-shadow",
                   }}
                 >
-                  <Link href={`/projects/${project.id}`} className="block">
+                  <Link href="/projects" className="block">
                     <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
                       <Image
-                        src={project.image}
+                        src={project.images[0]}
                         alt={project.title}
                         fill
                         className="object-fill transition-transform duration-500 group-hover:scale-105"
@@ -186,7 +138,7 @@ export default function ProjectsSection() {
                       />
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center">
                         <span className="bg-[#7CEB1D] text-[#041423] font-semibold px-6 py-3 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-400 flex items-center gap-2">
-                          View Project <ArrowRight size={18} />
+                          View Projects <ArrowRight size={18} />
                         </span>
                       </div>
                       <span className="absolute top-4 left-4 bg-[#041423]/70 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/10">
@@ -197,15 +149,8 @@ export default function ProjectsSection() {
                       <h3 className="text-xl font-bold text-[#041423] group-hover:text-[#7CEB1D] transition-colors duration-300">
                         {project.title}
                       </h3>
-                      <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
-                        <span className="flex items-center gap-1">
-                          <MapPin size={14} />
-                          {project.location}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Calendar size={14} />
-                          {project.year}
-                        </span>
+                      <div className="mt-2 text-sm text-gray-500">
+                        <span>{project.location}</span>
                       </div>
                     </div>
                   </Link>

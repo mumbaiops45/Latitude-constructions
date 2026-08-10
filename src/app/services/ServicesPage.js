@@ -10,10 +10,16 @@ import {
   Palette,
   Hammer,
   Sprout,
+  Leaf,
+  Droplets,
+  Sun,
+  Recycle,
+  Trees,
   ArrowRight,
   CheckCircle,
 } from "lucide-react";
 import Head from "next/head";
+
 function useInView(options = {}) {
   const ref = useRef(null);
   const [isInView, setIsInView] = useState(false);
@@ -74,13 +80,23 @@ const services = [
     image: "/image5.jpeg",
     features: ["Structural Assessment & Repairs", "Heritage & Character Preservation", "Modern Systems Upgrades", "Energy Efficiency Retrofitting"],
   },
+  // ─── ECO-FRIENDLY CONSTRUCTION ──────────────────────────────────────
   {
     icon: Sprout,
-    title: "Sustainable Construction",
+    title: "Eco-Friendly Sustainable Construction",
     description:
-      "Eco-friendly building practices – solar passive design, rainwater harvesting, and local materials for a greener farm house.",
+      "Build a greener future with sustainable construction – solar passive design, rainwater harvesting, and local materials for an eco-friendly farm house.",
     image: "/image7.jpeg",
     features: ["Solar Passive Design", "Rainwater Harvesting Systems", "Natural Ventilation & Insulation", "Local & Sustainable Materials"],
+  },
+  // ─── LANDSCAPE & ECOLOGICAL RESTORATION ──────────────────────────────
+  {
+    icon: Trees,
+    title: "Landscape & Ecological Restoration",
+    description:
+      "Restore your land's natural beauty with native planting, wetland creation, and sustainable landscape design that supports local biodiversity.",
+    image: "/image8.jpeg",
+    features: ["Native Plant Species Selection", "Wetland & Pond Creation", "Biodiversity Enhancement", "Soil Health & Erosion Control"],
   },
 ];
 
@@ -233,7 +249,7 @@ export default function ServicesPage() {
                           src={service.image}
                           alt={service.title}
                           fill
-                          className="object-fill"
+                          className="object-cover"
                           sizes="(max-width: 1024px) 100vw, 50vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 lg:opacity-100" />
