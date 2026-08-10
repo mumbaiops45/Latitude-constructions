@@ -13,7 +13,7 @@ export default function Hero() {
         muted
         playsInline
         preload="metadata"
-        poster="/Image1.jpeg"
+        // poster="/Image1.jpeg"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/hero1.mp4" type="video/mp4" />
