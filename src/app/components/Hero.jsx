@@ -2,21 +2,51 @@
 
 import Link from "next/link";
 import { Play, ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Hero() {
+  const videoRef = useRef(null);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const startPlayback = async () => {
+      try {
+        video.muted = true;
+        await video.play();
+      } catch {
+        // Ignore autoplay restrictions so the hero still displays immediately.
+      }
+    };
+
+    startPlayback();
+  }, []);
+
   return (
     <section className="relative w-full h-screen overflow-hidden">
       {/* Video Background – now with natural clarity */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="/hero1.mp4" type="video/mp4" />
-      </video>
+      <div className="absolute inset-0">
+        <img
+          src="/Image1.jpeg"
+          alt="Farmhouse hero background"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${isVideoReady ? "opacity-0" : "opacity-100"}`}
+        />
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="/Image1.jpeg"
+          onLoadedData={() => setIsVideoReady(true)}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${isVideoReady ? "opacity-100" : "opacity-0"}`}
+        >
+          <source src="/farmhouse2.mp4" type="video/mp4" />
+        </video>
+      </div>
 
       {/* Darker overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
