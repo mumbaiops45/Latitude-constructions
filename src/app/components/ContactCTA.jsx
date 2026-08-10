@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaCheckCircle } from "react-icons/fa";
 import { useRef, useEffect, useState } from "react";
 
 function useInView(options = {}) {
@@ -33,6 +33,18 @@ export default function ContactSection() {
   const sectionRef = useRef(null);
   const [sectionInView, setSectionInView] = useState(false);
 
+  // Form state
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -51,6 +63,158 @@ export default function ContactSection() {
     return () => observer.disconnect();
   }, []);
 
+  // ── Validation Functions ──────────────────────────────────────────────
+
+  const validateField = (name, value) => {
+    switch (name) {
+      case "name": {
+        if (!value || value.trim().length === 0) {
+          return "Name is required";
+        }
+        if (value.trim().length < 2) {
+          return "Name must be at least 2 characters";
+        }
+        if (value.trim().length > 50) {
+          return "Name cannot exceed 50 characters";
+        }
+        if (!/^[a-zA-Z\s\-']+$/.test(value.trim())) {
+          return "Name can only contain letters, spaces, hyphens, and apostrophes";
+        }
+        return "";
+      }
+
+      case "email": {
+        if (!value || value.trim().length === 0) {
+          return "Email is required";
+        }
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(value.trim())) {
+          return "Please enter a valid email address";
+        }
+        if (value.trim().length > 100) {
+          return "Email cannot exceed 100 characters";
+        }
+        return "";
+      }
+
+      case "message": {
+        if (!value || value.trim().length === 0) {
+          return "Message is required";
+        }
+        if (value.trim().length < 10) {
+          return "Message must be at least 10 characters";
+        }
+        if (value.trim().length > 1000) {
+          return "Message cannot exceed 1000 characters";
+        }
+        if (/\s{2,}/.test(value.trim())) {
+          return "Message should not contain multiple spaces";
+        }
+        if (/^[\s\t]+$/.test(value)) {
+          return "Message cannot be only spaces";
+        }
+        return "";
+      }
+
+      default:
+        return "";
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    const fields = ["name", "email", "message"];
+
+    fields.forEach((field) => {
+      const error = validateField(field, formData[field]);
+      if (error) newErrors[field] = error;
+    });
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // ── Handlers ───────────────────────────────────────────────────────────
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    if (touched[name]) {
+      const error = validateField(name, value);
+      setErrors((prev) => ({
+        ...prev,
+        [name]: error,
+      }));
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+
+    setTouched((prev) => ({
+      ...prev,
+      [name]: true,
+    }));
+
+    const error = validateField(name, value);
+    setErrors((prev) => ({
+      ...prev,
+      [name]: error,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Mark all fields as touched
+    const allTouched = {
+      name: true,
+      email: true,
+      message: true,
+    };
+    setTouched(allTouched);
+
+    const isValid = validateForm();
+
+    if (!isValid) {
+      // Scroll to first error
+      setTimeout(() => {
+        const firstError = document.querySelector(".form-error");
+        if (firstError) {
+          firstError.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+        }
+      }, 50);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Simulate API call
+    setTimeout(() => {
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+      setErrors({});
+      setTouched({});
+      setIsSubmitting(false);
+
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+    }, 1500);
+  };
+
   return (
     <>
       <style>
@@ -67,6 +231,14 @@ export default function ContactSection() {
             0%, 100% { box-shadow: 0 0 0 0 rgba(124,235,29,0.3); }
             50% { box-shadow: 0 0 30px 8px rgba(124,235,29,0.15); }
           }
+          @keyframes scale-in {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+          }
+          @keyframes fade-up {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+          }
 
           .animate-float-soft {
             animation: float-soft 4s ease-in-out infinite;
@@ -76,6 +248,9 @@ export default function ContactSection() {
           }
           .btn-pulse {
             animation: pulse-glow 2.5s ease-in-out infinite;
+          }
+          .success-check {
+            animation: scale-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
           }
           .hover-lift {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -90,6 +265,17 @@ export default function ContactSection() {
           .form-input:focus {
             border-color: #7CEB1D;
             box-shadow: 0 0 0 3px rgba(124,235,29,0.15);
+            outline: none;
+          }
+          .form-input.error {
+            border-color: #ef4444;
+          }
+          .form-input.error:focus {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239,68,68,0.15);
+          }
+          .form-error {
+            animation: fade-up 0.3s ease-out;
           }
           .contact-icon-wrapper {
             transition: all 0.3s ease;
@@ -101,7 +287,6 @@ export default function ContactSection() {
             color: #041423 !important;
           }
 
-          /* ─── New background: solid #365c41 ─────────────────────────── */
           .contact-bg {
             background: #365c41;
           }
@@ -195,7 +380,7 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Right – Contact Form Card – animated with scale */}
+            {/* Right – Contact Form Card */}
             <div
               className={`bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl transition-all duration-700 hover-lift ${
                 sectionInView
@@ -207,30 +392,113 @@ export default function ContactSection() {
               <h3 className="text-2xl font-bold mb-6 text-white">
                 Send a Quick Message
               </h3>
-              <form className="space-y-5">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="form-input w-full px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none transition-all duration-300"
-                />
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="form-input w-full px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none transition-all duration-300"
-                />
-                <textarea
-                  placeholder="Tell us about your farmhouse vision..."
-                  rows={4}
-                  className="form-input w-full px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none transition-all duration-300 resize-none"
-                />
-                <button
-                  type="submit"
-                  className="btn-pulse w-full bg-[#7CEB1D] hover:bg-[#6cd816] text-[#041423] font-bold py-3.5 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 group shadow-lg hover:shadow-xl"
-                >
-                  Send Message
-                  <FaArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                </button>
-              </form>
+
+              {submitted ? (
+                /* ── Success Message ── */
+                <div className="bg-[#7CEB1D]/10 border border-[#7CEB1D] rounded-xl p-8 text-center">
+                  <div className="success-check text-[#7CEB1D] text-5xl mb-4 flex justify-center">
+                    <FaCheckCircle size={50} />
+                  </div>
+                  <h4 className="text-xl font-bold text-white">Thank You!</h4>
+                  <p className="text-gray-300 mt-2 text-sm">
+                    We'll get back to you within 24 hours.
+                  </p>
+                </div>
+              ) : (
+                /* ── Form ── */
+                <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                  {/* Name */}
+                  <div>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={`form-input w-full px-5 py-3.5 rounded-xl bg-white/10 border ${
+                        errors.name && touched.name
+                          ? "border-red-400 error"
+                          : "border-white/20"
+                      } text-white placeholder-gray-400 focus:outline-none transition-all duration-300`}
+                    />
+                    {errors.name && touched.name && (
+                      <div className="form-error text-red-400 text-xs mt-1.5 flex items-center gap-1">
+                        <span>⚠</span>
+                        <span>{errors.name}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={`form-input w-full px-5 py-3.5 rounded-xl bg-white/10 border ${
+                        errors.email && touched.email
+                          ? "border-red-400 error"
+                          : "border-white/20"
+                      } text-white placeholder-gray-400 focus:outline-none transition-all duration-300`}
+                    />
+                    {errors.email && touched.email && (
+                      <div className="form-error text-red-400 text-xs mt-1.5 flex items-center gap-1">
+                        <span>⚠</span>
+                        <span>{errors.email}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <textarea
+                      name="message"
+                      placeholder="Tell us about your farmhouse vision..."
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={`form-input w-full px-5 py-3.5 rounded-xl bg-white/10 border ${
+                        errors.message && touched.message
+                          ? "border-red-400 error"
+                          : "border-white/20"
+                      } text-white placeholder-gray-400 focus:outline-none transition-all duration-300 resize-none`}
+                    />
+                    {errors.message && touched.message && (
+                      <div className="form-error text-red-400 text-xs mt-1.5 flex items-center gap-1">
+                        <span>⚠</span>
+                        <span>{errors.message}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-pulse w-full bg-[#7CEB1D] hover:bg-[#6cd816] disabled:bg-gray-500 disabled:cursor-not-allowed text-[#041423] font-bold py-3.5 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 group shadow-lg hover:shadow-xl"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <FaArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
