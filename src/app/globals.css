@@ -46,7 +46,7 @@ a{
   color:inherit;
 }
 
-img, video {
+img {
   max-width:100%;
   display:block;
   height:auto;
