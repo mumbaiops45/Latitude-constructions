@@ -1,25 +1,35 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Play, ArrowRight } from "lucide-react";
 
 export default function Hero() {
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowVideo(true), 120);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-[#041423]">
       {/* ================= VIDEO BACKGROUND ================= */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source src="/latitude-farmhouse-hero.mp4?v=20260811" type="video/mp4" />
-          {/* <source src="/farmhouse3.mp4?v=20260811" type="video/mp4" /> */}
-
-        </video>
+        {showVideo ? (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src="/latitude-farmhouse-hero.mp4?v=20260811" type="video/mp4" />
+          </video>
+        ) : (
+          <div className="absolute inset-0 h-full w-full bg-[radial-gradient(circle_at_top,_rgba(124,235,29,0.22),_transparent_45%),linear-gradient(135deg,_#041423_0%,_#0b1d31_100%)]" />
+        )}
 
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/45" />
