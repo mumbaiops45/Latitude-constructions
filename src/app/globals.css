@@ -22,12 +22,21 @@
 
 html{
   scroll-behavior:smooth;
+  overflow-x:hidden;
+}
+
+* {
+  box-sizing:border-box;
 }
 
 body{
   background:var(--background);
   color:var(--foreground);
   font-family:"Plus Jakarta Sans",sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 }
 
 a{
@@ -35,21 +44,32 @@ a{
   color:inherit;
 }
 
-img{
+img, video{
   max-width:100%;
   display:block;
+  height:auto;
+}
+
+button, input, textarea, select {
+  font:inherit;
 }
 
 .container{
   width:100%;
   max-width:var(--container);
   margin:auto;
-  padding-inline:20px;
+  padding-inline:1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-inline:1.5rem;
+  }
 }
 
 .section{
-  padding-block:var(--section-padding);
-} 
+  padding-block:clamp(3.5rem, 8vw, 6.25rem);
+}
 
 button{
   cursor:pointer;

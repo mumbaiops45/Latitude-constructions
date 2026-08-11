@@ -5,7 +5,7 @@ import { Play, ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full min-h-screen overflow-hidden">
       {/* Video Background – now with natural clarity */}
       <video
         autoPlay
@@ -13,7 +13,6 @@ export default function Hero() {
         muted
         playsInline
         preload="metadata"
-        // poster="/Image1.jpeg"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/hero1.mp4" type="video/mp4" />
@@ -23,11 +22,11 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
 
       {/* Content – Centered */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center text-white">
 
         {/* Brand – LATITUDE with gradient sweep */}
         <div className="animate-soft-pop [animation-delay:0ms]">
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight leading-none">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-tight leading-none">
             <span className="bg-clip-text text-transparent bg-[length:200%] bg-gradient-to-r from-[#7CEB1D] via-[#a8f05a] to-[#5ec70a] animate-gradient-shift">
               LATITUDE
             </span>
@@ -36,7 +35,7 @@ export default function Hero() {
 
         {/* Main Headline – focused on Farm House */}
         <div className="animate-slide-up-slow [animation-delay:400ms]">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-3 sm:mt-4 leading-tight px-2">
             Crafting Your <span className="text-[#7CEB1D]">Dream Farm House</span>
           </h2>
         </div>
@@ -50,24 +49,24 @@ export default function Hero() {
 
         {/* Description – farm house focused */}
         <div className="animate-blur-in-slow [animation-delay:1200ms] max-w-2xl">
-          <p className="text-base sm:text-lg md:text-xl text-gray-200 mt-4 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mt-4 sm:mt-5 leading-relaxed px-2 sm:px-0">
             From sprawling estates to cozy retreats – we design and build 
             premium farm houses that blend rustic charm with modern comfort.
           </p>
         </div>
 
         {/* Buttons – gentle rise */}
-        <div className="animate-fade-up-slow [animation-delay:1600ms] flex flex-wrap items-center justify-center gap-4 mt-8">
+        <div className="animate-fade-up-slow [animation-delay:1600ms] flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-10 w-full">
           <Link
             href="/projects"
-            className="group inline-flex items-center gap-2 bg-[#7CEB1D] hover:bg-[#6cd816] text-[#041423] font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
+            className="group inline-flex items-center justify-center gap-2 bg-[#7CEB1D] hover:bg-[#6cd816] text-[#041423] font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 w-full sm:w-auto"
           >
             Explore Our Farm Houses
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 border-2 border-white/40 hover:border-[#7CEB1D] text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/10 hover:-translate-y-1"
+            className="group inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-[#7CEB1D] text-white font-semibold px-6 sm:px-8 py-3.5 sm:py-4 rounded-full transition-all duration-300 hover:bg-white/10 hover:-translate-y-1 w-full sm:w-auto"
           >
             <Play size={18} className="fill-[#7CEB1D] text-[#7CEB1D] group-hover:scale-110 transition-transform" />
             Request a Quote

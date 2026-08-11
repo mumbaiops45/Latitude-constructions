@@ -305,7 +305,7 @@ export default function ContactSection() {
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
             {/* Left Content – animated text */}
             <div>
               <span
@@ -344,7 +344,7 @@ export default function ContactSection() {
               </p>
 
               {/* Contact Details – each with hover effect */}
-              <div className="space-y-4 mt-8">
+              <div className="space-y-4 mt-8 sm:mt-10">
                 {[
                   { icon: FaPhone, text: "+91 89516 39116", href: "tel:+918951639116" },
                   { icon: FaEnvelope, text: "latitudeconstructions080@gmail.com", href: "mailto:latitudeconstructions080@gmail.com" },
@@ -361,7 +361,7 @@ export default function ContactSection() {
                       }`}
                       style={{ transitionDelay: `${450 + index * 100}ms` }}
                     >
-                      <div className="contact-icon-wrapper w-12 h-12 rounded-full bg-[#7CEB1D]/10 flex items-center justify-center flex-shrink-0 transition-all duration-300 cursor-pointer">
+                      <div className="contact-icon-wrapper w-12 h-12 rounded-full bg-[#7CEB1D]/10 flex items-center justify-center shrink-0 transition-all duration-300 cursor-pointer">
                         <Icon size={18} className="text-[#7CEB1D] transition-colors duration-300" />
                       </div>
                       {item.href ? (
@@ -382,7 +382,7 @@ export default function ContactSection() {
 
             {/* Right – Contact Form Card */}
             <div
-              className={`bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl transition-all duration-700 hover-lift ${
+              className={`bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 shadow-xl transition-all duration-700 hover-lift ${
                 sectionInView
                   ? "opacity-100 translate-y-0 scale-100"
                   : "opacity-0 translate-y-12 scale-95"

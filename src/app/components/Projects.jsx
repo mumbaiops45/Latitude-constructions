@@ -76,7 +76,7 @@ export default function ProjectsSection() {
         {/* Decorative glow */}
         <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#7CEB1D]/5 blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Heading – with staggered animation + floating */}
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
             <span
@@ -110,7 +110,7 @@ export default function ProjectsSection() {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {featuredProjects.map((project, index) => {
               const { ref, isInView } = useInView({ threshold: 0.15 });
 

@@ -208,12 +208,12 @@ export default function AboutSection() {
         <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-[#7CEB1D]/10 blur-3xl pointer-events-none animate-float-soft" />
         <div className="absolute bottom-[-30%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#7CEB1D]/5 blur-3xl pointer-events-none animate-float-soft" style={{ animationDelay: '2s' }} />
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             
             {/* LEFT IMAGE */}
-            <div className="relative">
-              <div className="relative rounded-[45px] overflow-hidden shadow-2xl h-[620px] border-2 border-[#7CEB1D]/20 hover:scale-[1.02] transition-transform duration-500">
+            <div className="relative order-2 lg:order-1">
+              <div className="relative rounded-[28px] sm:rounded-[40px] overflow-hidden shadow-2xl h-[320px] sm:h-[460px] lg:h-[620px] border-2 border-[#7CEB1D]/20 hover:scale-[1.02] transition-transform duration-500">
                 <Image
                   src="/image6.jpeg"
                   alt="Latitude Farm House Construction"
@@ -230,7 +230,7 @@ export default function AboutSection() {
 
               {/* Floating Experience Card – updated text */}
               <div
-                className={`absolute -bottom-28 -left-12 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-8 w-42 border border-[#7CEB1D]/30 transition-all duration-1000 animate-float-soft ${isInView
+                className={`absolute -bottom-6 left-4 sm:-bottom-12 sm:left-6 lg:-bottom-28 lg:-left-12 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-4 sm:p-6 lg:p-8 w-36 sm:w-40 lg:w-42 border border-[#7CEB1D]/30 transition-all duration-1000 animate-float-soft ${isInView
                     ? "opacity-100 translate-y-0 scale-100"
                     : "opacity-0 translate-y-8 scale-95"
                   }`}
@@ -242,7 +242,7 @@ export default function AboutSection() {
             </div>
 
             {/* RIGHT CONTENT */}
-            <div>
+            <div className="order-1 lg:order-2">
               <span
                 className={`inline-flex items-center rounded-full bg-[#7CEB1D]/20 text-[#7CEB1D] px-5 py-2 text-sm font-semibold tracking-wider transition-all duration-700 animate-badge-pulse ${isInView
                     ? "opacity-100 translate-y-0"
@@ -254,7 +254,7 @@ export default function AboutSection() {
               </span>
 
               <h2
-                className={`mt-6 text-5xl lg:text-6xl font-bold leading-tight transition-all duration-700 ${isInView
+                className={`mt-6 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight transition-all duration-700 ${isInView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
                   }`}
@@ -266,7 +266,7 @@ export default function AboutSection() {
               </h2>
 
               <p
-                className={`mt-8 text-lg leading-8 text-white/70 transition-all duration-700 animate-float-soft ${isInView
+                className={`mt-8 text-base sm:text-lg leading-7 sm:leading-8 text-white/70 transition-all duration-700 animate-float-soft ${isInView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
                   }`}
@@ -279,11 +279,11 @@ export default function AboutSection() {
               </p>
 
               {/* FEATURES – updated for farm house */}
-              <div className="flex flex-wrap gap-4 mt-10">
+              <div className="flex flex-wrap gap-3 sm:gap-4 mt-8 sm:mt-10">
                 {features.map((item, index) => (
                   <div
                     key={item}
-                    className={`flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 hover-glow transition-all duration-700 ${isInView
+                    className={`flex items-center gap-3 px-4 sm:px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 hover-glow transition-all duration-700 ${isInView
                         ? "opacity-100 translate-x-0"
                         : "opacity-0 translate-x-8"
                       }`}
@@ -298,7 +298,7 @@ export default function AboutSection() {
           </div>
 
           {/* STATS */}
-          <div className="grid md:grid-cols-4 gap-8 mt-28">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mt-16 sm:mt-20 lg:mt-28">
             {stats.map((stat, index) => (
               <StatCard
                 key={stat.label}

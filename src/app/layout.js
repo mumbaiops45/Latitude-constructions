@@ -15,16 +15,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-
         <Navbar />
 
-        <main className="pt-[90px]">
+        <main className="pt-[84px] sm:pt-[96px]">
           {children}
-           <ScrollToTop />
+          <ScrollToTop />
         </main>
 
         <Footer />
-
       </body>
     </html>
   );

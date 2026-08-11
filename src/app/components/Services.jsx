@@ -290,7 +290,7 @@ export default function ServicesSection() {
           style={{ animationDelay: "3s" }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Heading */}
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
             <span

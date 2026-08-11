@@ -27,10 +27,10 @@ export default function Navbar() {
         <div className="h-1 w-full bg-gradient-to-r from-[#7CEB1D] via-[#a8f05a] to-[#5ec70a]"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="h-[82px] flex items-center justify-between gap-4">
+          <div className="h-[74px] sm:h-[82px] flex items-center justify-between gap-3">
             {/* Logo - left */}
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <div className="relative w-[180px] h-[50px] md:w-[90px] md:h-[80px]">
+              <div className="relative w-[110px] h-[44px] sm:w-[140px] sm:h-[48px] md:w-[160px] md:h-[52px] lg:w-[180px] lg:h-[56px]">
                 <Image
                   src="/logo.jpeg"
                   alt="Latitude Constructions"
@@ -69,7 +69,7 @@ export default function Navbar() {
             {/* Mobile menu toggle */}
             <button
               onClick={() => setMobileOpen(true)}
-              className="lg:hidden p-2 -mr-2 rounded-lg hover:bg-gray-100/50 transition-colors"
+              className="lg:hidden p-2.5 -mr-1 rounded-lg hover:bg-gray-100/50 transition-colors touch-manipulation"
               aria-label="Open menu"
             >
               <Menu size={26} className="text-[#041423]" />
@@ -81,7 +81,7 @@ export default function Navbar() {
       {/* Mobile Menu - solid white background */}
       <div
         className={`
-          fixed top-0 right-0 h-full w-[300px] bg-white shadow-2xl z-[999]
+          fixed top-0 right-0 h-full w-[88vw] max-w-[320px] bg-white shadow-2xl z-[999]
           transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
           ${mobileOpen ? "translate-x-0" : "translate-x-full"}
         `}
@@ -90,7 +90,7 @@ export default function Navbar() {
         <div className="h-1 w-full bg-gradient-to-r from-[#7CEB1D] via-[#a8f05a] to-[#5ec70a]"></div>
 
         {/* Header */}
-        <div className="flex justify-between items-center p-6 border-b border-gray-100">
+        <div className="flex justify-between items-center px-5 py-5 border-b border-gray-100">
           <span className="text-xl font-bold text-[#041423]">Menu</span>
           <button
             onClick={() => setMobileOpen(false)}
@@ -102,7 +102,7 @@ export default function Navbar() {
         </div>
 
         {/* Navigation links */}
-        <div className="flex flex-col p-6 gap-4">
+        <div className="flex flex-col px-5 py-6 gap-4">
           {menus.map((item) => {
             const isActive = pathname === item.path;
             return (
