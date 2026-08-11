@@ -19,42 +19,42 @@ const services = [
     title: "Custom Farm House Design",
     description:
       "Tailored architectural plans that blend rustic elegance with modern comfort, designed around your land and lifestyle.",
-    image: "/image1.jpeg",
+    image: "/Image1.jpeg",
   },
   {
     icon: PenTool,
     title: "3D Farm Visualisation",
     description:
       "Walk through your future farm house in immersive 3D – every room, view, and finish visualised before construction begins.",
-    image: "/image2.jpeg",
+    image: "/Image2.jpeg",
   },
   {
     icon: Ruler,
     title: "Estate & Land Planning",
     description:
       "Optimise your acreage with expert planning – from house placement and driveways to paddocks, gardens, and outbuildings.",
-    image: "/image3.jpeg",
+    image: "/Image3.jpeg",
   },
   {
     icon: Palette,
     title: "Rustic Interior Design",
     description:
       "Warm, inviting interiors that celebrate natural materials – wood, stone, and earthy tones – with a touch of luxury.",
-    image: "/image4.jpeg",
+    image: "/Image4.jpeg",
   },
   {
     icon: Hammer,
     title: "Farm House Renovation",
     description:
       "Breathe new life into old farm houses – preserving character while upgrading structure, energy efficiency, and aesthetics.",
-    image: "/image5.jpeg",
+    image: "/Image5.jpeg",
   },
   {
     icon: Sprout,
     title: "Sustainable Construction",
     description:
       "Eco-friendly building practices – solar passive design, rainwater harvesting, and local materials for a greener farm house.",
-    image: "/image7.jpeg",
+    image: "/Image7.jpeg",
   },
 ];
 

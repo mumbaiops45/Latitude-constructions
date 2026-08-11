@@ -437,7 +437,7 @@ export default function AboutPage() {
               >
                 <div className="relative h-[450px] sm:h-[500px] lg:h-[520px]  rounded-3xl overflow-hidden shadow-2xl border-2 border-[#7CEB1D]/20">
                   <Image
-                    src="/image8.jpeg"
+                    src="/Image8.jpeg"
                     alt="Latitude Construction team at work"
                     fill
                     className="object-fill"

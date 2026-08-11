@@ -2,28 +2,20 @@
 
 import Link from "next/link";
 import { Play, ArrowRight } from "lucide-react";
-import { useState, useEffect } from "react";
+
 export default function Hero() {
-  const [videoSrc, setVideoSrc] = useState('/hero1.mp4');
-  useEffect(() => {  // ← ADD THIS ENTIRE BLOCK
-    // Add timestamp to force browser to load fresh video
-    const timestamp = new Date().getTime();
-    setVideoSrc(`/hero1.mp4?t=${timestamp}`);
-  }, []);
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
       {/* Video Background – now with natural clarity */}
       <video
-        key={videoSrc}  // ← ADD THIS LINE
         autoPlay
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src={videoSrc} type="video/mp4" />  {/* ← CHANGE THIS LINE */}
-        <source src="/hero1.webm" type="video/webm" />
+        <source src="/hero1.mp4" type="video/mp4" />
       </video>
 
       {/* Darker overlay for better text readability */}
@@ -58,7 +50,7 @@ export default function Hero() {
         {/* Description – farm house focused */}
         <div className="animate-blur-in-slow [animation-delay:1200ms] max-w-2xl">
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mt-4 sm:mt-5 leading-relaxed px-2 sm:px-0">
-            From sprawling estates to cozy retreats – we design and build
+            From sprawling estates to cozy retreats – we design and build 
             premium farm houses that blend rustic charm with modern comfort.
           </p>
         </div>

@@ -215,7 +215,7 @@ export default function AboutSection() {
             <div className="relative order-2 lg:order-1">
               <div className="relative rounded-[28px] sm:rounded-[40px] overflow-hidden shadow-2xl h-[320px] sm:h-[460px] lg:h-[620px] border-2 border-[#7CEB1D]/20 hover:scale-[1.02] transition-transform duration-500">
                 <Image
-                  src="/image6.jpeg"
+                  src="/Image6.jpeg"
                   alt="Latitude Farm House Construction"
                   fill
                   className="object-cover"

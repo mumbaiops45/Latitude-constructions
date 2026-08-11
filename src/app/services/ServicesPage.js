@@ -45,7 +45,7 @@ const services = [
     title: "Custom Farm House Design",
     description:
       "Tailored architectural plans that blend rustic elegance with modern comfort, designed around your land and lifestyle.",
-    image: "/image1.jpeg",
+    image: "/Image1.jpeg",
     features: ["Site Analysis & Assessment", "Concept & Schematic Design", "Detailed Construction Drawings", "Permit & Approval Assistance"],
   },
   {
@@ -53,7 +53,7 @@ const services = [
     title: "3D Farm Visualisation",
     description:
       "Walk through your future farm house in immersive 3D – every room, view, and finish visualised before construction begins.",
-    image: "/image2.jpeg",
+    image: "/Image2.jpeg",
     features: ["3D Walkthrough Animations", "Virtual Reality Tours", "Material & Finish Selection", "Daylight & Lighting Studies"],
   },
   {
@@ -61,7 +61,7 @@ const services = [
     title: "Estate & Land Planning",
     description:
       "Optimise your acreage with expert planning – from house placement and driveways to paddocks, gardens, and outbuildings.",
-    image: "/image3.jpeg",
+    image: "/Image3.jpeg",
     features: ["Land Surveying & Topography", "Zoning & Regulatory Compliance", "Infrastructure & Utility Planning", "Landscape & Garden Design"],
   },
   {
@@ -69,7 +69,7 @@ const services = [
     title: "Rustic Interior Design",
     description:
       "Warm, inviting interiors that celebrate natural materials – wood, stone, and earthy tones – with a touch of luxury.",
-    image: "/image4.jpeg",
+    image: "/Image4.jpeg",
     features: ["Space Planning & Layout", "Material & Finish Selection", "Custom Furniture Design", "Lighting & Ambience Design"],
   },
   {
@@ -77,7 +77,7 @@ const services = [
     title: "Farm House Renovation",
     description:
       "Breathe new life into old farm houses – preserving character while upgrading structure, energy efficiency, and aesthetics.",
-    image: "/image5.jpeg",
+    image: "/Image5.jpeg",
     features: ["Structural Assessment & Repairs", "Heritage & Character Preservation", "Modern Systems Upgrades", "Energy Efficiency Retrofitting"],
   },
   // ─── ECO-FRIENDLY CONSTRUCTION ──────────────────────────────────────
@@ -86,7 +86,7 @@ const services = [
     title: "Eco-Friendly Sustainable Construction",
     description:
       "Build a greener future with sustainable construction – solar passive design, rainwater harvesting, and local materials for an eco-friendly farm house.",
-    image: "/image7.jpeg",
+    image: "/Image7.jpeg",
     features: ["Solar Passive Design", "Rainwater Harvesting Systems", "Natural Ventilation & Insulation", "Local & Sustainable Materials"],
   },
   // ─── LANDSCAPE & ECOLOGICAL RESTORATION ──────────────────────────────
@@ -95,7 +95,7 @@ const services = [
     title: "Landscape & Ecological Restoration",
     description:
       "Restore your land's natural beauty with native planting, wetland creation, and sustainable landscape design that supports local biodiversity.",
-    image: "/image8.jpeg",
+    image: "/Image8.jpeg",
     features: ["Native Plant Species Selection", "Wetland & Pond Creation", "Biodiversity Enhancement", "Soil Health & Erosion Control"],
   },
 ];
