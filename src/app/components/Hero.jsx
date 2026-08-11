@@ -17,6 +17,8 @@ export default function Hero() {
           className="absolute inset-0 h-full w-full object-cover"
         >
           <source src="/latitude-farmhouse-hero.mp4?v=20260811" type="video/mp4" />
+          {/* <source src="/farmhouse3.mp4?v=20260811" type="video/mp4" /> */}
+
         </video>
 
         {/* Dark overlay */}

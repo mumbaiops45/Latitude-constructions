@@ -327,14 +327,14 @@ export default function ProjectsPage() {
 
       <main ref={sectionRef} className="overflow-hidden">
         {/* ─── HERO ────────────────────────────────────────────────────────── */}
-        <section className="relative h-[50vh] min-h-[350px] flex items-center justify-center overflow-hidden bg-[#041423]">
+        <section className="relative min-h-[380px] sm:min-h-[440px] md:min-h-[480px] flex items-center justify-center overflow-hidden bg-[#041423] py-16 sm:py-20">
           <div className="absolute inset-0 bg-gradient-to-br from-[#041423] via-[#0a1a2b] to-[#041423]" />
           <div className="absolute inset-0 bg-grid-dots opacity-50" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
           <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#7CEB1D]/10 rounded-full blur-3xl animate-float-orb pointer-events-none" />
           <div className="absolute -top-20 -left-20 w-48 h-48 bg-[#7CEB1D]/5 rounded-full blur-2xl animate-float-orb pointer-events-none" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#7CEB1D]/5 rounded-full blur-3xl animate-float-orb pointer-events-none" style={{ animationDelay: "2s" }} />
 
-          <div className="relative z-10 text-center text-white max-w-4xl px-4">
+          <div className="relative z-10 text-center text-white max-w-4xl px-4 sm:px-6 lg:px-8">
             <span
               className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-4 transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
               style={{ transitionDelay: "100ms" }}
@@ -342,14 +342,14 @@ export default function ProjectsPage() {
               Our Portfolio
             </span>
             <h1
-              className={`text-5xl sm:text-6xl md:text-7xl font-bold leading-tight transition-all duration-700 animate-float-soft ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+              className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight transition-all duration-700 animate-float-soft ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
               style={{ transitionDelay: "200ms" }}
             >
               Farmhouse
               <span className="block text-[#7CEB1D]">Projects</span>
             </h1>
             <p
-              className={`mt-6 text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+              className={`mt-6 text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
               style={{ transitionDelay: "350ms" }}
             >
               Explore our handcrafted farmhouses – each designed to blend rustic charm with modern luxury.
@@ -358,13 +358,13 @@ export default function ProjectsPage() {
         </section>
 
         {/* ─── PROJECTS GRID ─────────────────────────────────────────────── */}
-        <section className="py-20 md:py-28 animate-gradient-bg relative">
+        <section className="py-16 sm:py-20 md:py-28 animate-gradient-bg relative">
           <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-[#7CEB1D]/5 rounded-full blur-3xl pointer-events-none animate-float-orb" />
           <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] bg-[#7CEB1D]/8 rounded-full blur-3xl pointer-events-none animate-float-orb" style={{ animationDelay: "3s" }} />
 
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* Filters & Search */}
-            <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-12">
+            <div className="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center mb-10 sm:mb-12">
               <div className="flex flex-wrap gap-3 justify-center">
                 {projectCategories.map((cat) => (
                   <button
@@ -400,7 +400,7 @@ export default function ProjectsPage() {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 {filteredProjects.map((project, index) => (
                   <ProjectCard key={project.id} project={project} index={index} />
                 ))}

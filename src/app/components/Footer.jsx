@@ -35,7 +35,7 @@ const quickLinks = [
   { name: "Home", path: "/" },
   { name: "About Us", path: "/about" },
   { name: "Services", path: "/services" },
-  { name: "Projects", path: "/projects" },
+  { name: "Portfolio", path: "/projects" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -43,26 +43,32 @@ const footerServices = [
   {
     name: "Custom Farm House Design",
     path: "/services",
+    anchor: "custom-farm-house-design",
   },
   {
     name: "3D Farm Visualisation",
     path: "/services",
+    anchor: "3d-farm-visualisation",
   },
   {
     name: "Estate & Land Planning",
     path: "/services",
+    anchor: "estate-land-planning",
   },
   {
     name: "Rustic Interior Design",
     path: "/services",
+    anchor: "rustic-interior-design",
   },
   {
     name: "Farm House Renovation",
     path: "/services",
+    anchor: "farm-house-renovation",
   },
   {
     name: "Sustainable Construction",
     path: "/services",
+    anchor: "eco-friendly-sustainable-construction",
   },
 ];
 
@@ -235,7 +241,7 @@ export default function Footer() {
                   {footerServices.map((service) => (
                     <li key={service.name}>
                       <Link
-                        href={service.path}
+                        href={`${service.path}${service.anchor ? `#${service.anchor}` : ""}`}
                         className="text-gray-400 hover:text-[#7CEB1D] transition-all duration-300 text-sm flex items-center gap-2 group footer-link"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-[#7CEB1D]/30 group-hover:bg-[#7CEB1D]" />

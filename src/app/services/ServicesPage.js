@@ -45,7 +45,8 @@ const services = [
     title: "Custom Farm House Design",
     description:
       "Tailored architectural plans that blend rustic elegance with modern comfort, designed around your land and lifestyle.",
-    image: "/Image1.jpeg",
+    image: "/Image.jpg",
+    anchor: "custom-farm-house-design",
     features: ["Site Analysis & Assessment", "Concept & Schematic Design", "Detailed Construction Drawings", "Permit & Approval Assistance"],
   },
   {
@@ -53,7 +54,8 @@ const services = [
     title: "3D Farm Visualisation",
     description:
       "Walk through your future farm house in immersive 3D – every room, view, and finish visualised before construction begins.",
-    image: "/Image2.jpeg",
+    image: "/Image1.jpg",
+    anchor: "3d-farm-visualisation",
     features: ["3D Walkthrough Animations", "Virtual Reality Tours", "Material & Finish Selection", "Daylight & Lighting Studies"],
   },
   {
@@ -61,7 +63,8 @@ const services = [
     title: "Estate & Land Planning",
     description:
       "Optimise your acreage with expert planning – from house placement and driveways to paddocks, gardens, and outbuildings.",
-    image: "/Image3.jpeg",
+    image: "/Image2.jpg",
+    anchor: "estate-land-planning",
     features: ["Land Surveying & Topography", "Zoning & Regulatory Compliance", "Infrastructure & Utility Planning", "Landscape & Garden Design"],
   },
   {
@@ -69,7 +72,8 @@ const services = [
     title: "Rustic Interior Design",
     description:
       "Warm, inviting interiors that celebrate natural materials – wood, stone, and earthy tones – with a touch of luxury.",
-    image: "/Image4.jpeg",
+    image: "/Image3.jpg",
+    anchor: "rustic-interior-design",
     features: ["Space Planning & Layout", "Material & Finish Selection", "Custom Furniture Design", "Lighting & Ambience Design"],
   },
   {
@@ -77,7 +81,8 @@ const services = [
     title: "Farm House Renovation",
     description:
       "Breathe new life into old farm houses – preserving character while upgrading structure, energy efficiency, and aesthetics.",
-    image: "/Image5.jpeg",
+    image: "/Image55.jpg",
+    anchor: "farm-house-renovation",
     features: ["Structural Assessment & Repairs", "Heritage & Character Preservation", "Modern Systems Upgrades", "Energy Efficiency Retrofitting"],
   },
   // ─── ECO-FRIENDLY CONSTRUCTION ──────────────────────────────────────
@@ -86,7 +91,8 @@ const services = [
     title: "Eco-Friendly Sustainable Construction",
     description:
       "Build a greener future with sustainable construction – solar passive design, rainwater harvesting, and local materials for an eco-friendly farm house.",
-    image: "/Image7.jpeg",
+    image: "/Image5.jpg",
+    anchor: "eco-friendly-sustainable-construction",
     features: ["Solar Passive Design", "Rainwater Harvesting Systems", "Natural Ventilation & Insulation", "Local & Sustainable Materials"],
   },
   // ─── LANDSCAPE & ECOLOGICAL RESTORATION ──────────────────────────────
@@ -95,7 +101,8 @@ const services = [
     title: "Landscape & Ecological Restoration",
     description:
       "Restore your land's natural beauty with native planting, wetland creation, and sustainable landscape design that supports local biodiversity.",
-    image: "/Image8.jpeg",
+    image: "/Image8.jpg",
+    anchor: "landscape-ecological-restoration",
     features: ["Native Plant Species Selection", "Wetland & Pond Creation", "Biodiversity Enhancement", "Soil Health & Erosion Control"],
   },
 ];
@@ -186,14 +193,14 @@ export default function ServicesPage() {
 
       <main ref={sectionRef} className="overflow-hidden">
         {/* ─── HERO ────────────────────────────────────────────────────────── */}
-        <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-[#041423]">
+        <section className="relative min-h-[420px] sm:min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-[#041423] py-16 sm:py-20">
           <div className="absolute inset-0 bg-gradient-to-br from-[#041423] via-[#0a1a2b] to-[#041423]" />
           <div className="absolute inset-0 bg-grid-dots opacity-50" />
           <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#7CEB1D]/10 rounded-full blur-3xl animate-float-orb pointer-events-none" />
           <div className="absolute -top-20 -left-20 w-48 h-48 bg-[#7CEB1D]/5 rounded-full blur-2xl animate-float-orb pointer-events-none" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#7CEB1D]/5 rounded-full blur-3xl animate-float-orb pointer-events-none" style={{ animationDelay: "2s" }} />
 
-          <div className="relative z-10 text-center text-white max-w-4xl px-4">
+          <div className="relative z-10 text-center text-white max-w-4xl px-4 sm:px-6 lg:px-8">
             <span
               className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-4 transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
@@ -202,7 +209,7 @@ export default function ServicesPage() {
               What We Offer
             </span>
             <h1
-              className={`text-5xl sm:text-6xl md:text-7xl font-bold leading-tight transition-all duration-700 animate-float-soft ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight transition-all duration-700 animate-float-soft ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 }`}
               style={{ transitionDelay: "200ms" }}
             >
@@ -210,7 +217,7 @@ export default function ServicesPage() {
               <span className="block text-[#7CEB1D]">Services</span>
             </h1>
             <p
-              className={`mt-6 text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              className={`mt-6 text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 }`}
               style={{ transitionDelay: "350ms" }}
             >
@@ -221,11 +228,11 @@ export default function ServicesPage() {
         </section>
 
         {/* ─── SERVICES ZIGZAG ────────────────────────────────────────────── */}
-        <section className="py-20 md:py-28 animate-gradient-bg relative">
+        <section className="py-16 sm:py-20 md:py-28 animate-gradient-bg relative">
           <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-[#7CEB1D]/5 rounded-full blur-3xl pointer-events-none animate-float-orb" />
           <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] bg-[#7CEB1D]/8 rounded-full blur-3xl pointer-events-none animate-float-orb" style={{ animationDelay: "3s" }} />
 
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="space-y-20">
               {services.map((service, index) => {
                 const Icon = service.icon;
@@ -235,8 +242,9 @@ export default function ServicesPage() {
                 return (
                   <div
                     key={index}
+                    id={service.anchor}
                     ref={ref}
-                    className={`service-row bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-700 ${isInView
+                    className={`service-row bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-700 scroll-mt-[110px] sm:scroll-mt-[120px] ${isInView
                         ? "opacity-100 translate-y-0 scale-100"
                         : "opacity-0 translate-y-12 scale-95"
                       }`}
@@ -244,7 +252,7 @@ export default function ServicesPage() {
                   >
                     <div className={`grid lg:grid-cols-2 ${isEven ? "" : "lg:grid-flow-dense"}`}>
                       {/* Image */}
-                      <div className={`relative h-[300px] lg:h-[400px] service-image-wrapper ${isEven ? "order-1" : "order-2"}`}>
+                      <div className={`relative h-[240px] sm:h-[300px] lg:h-[400px] service-image-wrapper ${isEven ? "order-1" : "order-2"}`}>
                         <Image
                           src={service.image}
                           alt={service.title}
@@ -256,14 +264,14 @@ export default function ServicesPage() {
                       </div>
 
                       {/* Content */}
-                      <div className={`p-8 md:p-12 flex flex-col justify-center ${isEven ? "order-2" : "order-1"}`}>
+                      <div className={`p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center ${isEven ? "order-2" : "order-1"}`}>
                         <div className="flex items-center gap-3 mb-4">
                           <div className="service-icon w-14 h-14 rounded-xl bg-[#7CEB1D]/10 flex items-center justify-center transition-all duration-300">
                             <Icon size={28} className="text-[#7CEB1D] transition-colors duration-300" />
                           </div>
                           <span className="text-sm font-semibold text-[#7CEB1D] uppercase tracking-wider">Service</span>
                         </div>
-                        <h3 className="text-3xl md:text-4xl font-bold text-[#041423] mb-4">{service.title}</h3>
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#041423] mb-4">{service.title}</h3>
                         <p className="text-gray-600 text-base leading-relaxed mb-6">{service.description}</p>
                         <ul className="grid sm:grid-cols-2 gap-3 mb-8">
                           {service.features.map((feature, i) => (

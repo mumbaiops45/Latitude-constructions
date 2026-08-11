@@ -152,10 +152,10 @@ function StatCard({ stat, isInView, delay }) {
         }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <div className="w-14 h-14 rounded-2xl bg-[#7CEB1D]/10 flex items-center justify-center mb-4 border border-[#7CEB1D]/20 animate-badge-pulse">
+      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#7CEB1D]/10 flex items-center justify-center mb-4 border border-[#7CEB1D]/20 animate-badge-pulse">
         <Icon className="text-[#7CEB1D]" size={28} />
       </div>
-      <h3 className="text-4xl font-bold text-gray-600 animate-pulse-number">
+      <h3 className="text-3xl sm:text-4xl font-bold text-gray-600 animate-pulse-number">
         {displayValue}
       </h3>
       <p className="text-gray-600 mt-2">{stat.label}</p>
@@ -316,14 +316,14 @@ export default function AboutPage() {
 
       <main ref={sectionRef} className="overflow-hidden">
         {/* ─── HERO ────────────────────────────────────────────────────────── */}
-        <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        <section className="relative min-h-[460px] sm:min-h-[520px] md:min-h-[580px] flex items-center justify-center overflow-hidden py-16 sm:py-20">
           <div className="absolute inset-0 bg-[#041423]">
             <div className="absolute inset-0 bg-gradient-to-br from-[#041423] via-[#0a1a2e] to-[#041423]" />
             <div className="absolute inset-0 bg-grid-dots" />
             <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-[#7CEB1D]/10 blur-3xl pointer-events-none animate-float-orb" />
             <div className="absolute bottom-[-30%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#7CEB1D]/5 blur-3xl pointer-events-none animate-float-orb" style={{ animationDelay: "2s" }} />
           </div>
-          <div className="relative z-10 text-center text-white max-w-4xl px-4">
+          <div className="relative z-10 text-center text-white max-w-4xl px-4 sm:px-6 lg:px-8">
             <span
               className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-4 transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
@@ -332,7 +332,7 @@ export default function AboutPage() {
               About Latitude
             </span>
             <h1
-              className={`text-5xl sm:text-6xl md:text-7xl font-bold leading-tight transition-all duration-700 animate-float-soft ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight transition-all duration-700 animate-float-soft ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 }`}
               style={{ transitionDelay: "200ms" }}
             >
@@ -340,7 +340,7 @@ export default function AboutPage() {
               <span className="block animate-gradient-text">Dreams Since 2014</span>
             </h1>
             <p
-              className={`mt-6 text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              className={`mt-6 text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 }`}
               style={{ transitionDelay: "350ms" }}
             >
@@ -353,8 +353,8 @@ export default function AboutPage() {
 
         {/* ─── STATS ────────────────────────────────────────────────────────── */}
         <section className="relative -mt-16 z-20">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
               {stats.map((stat, index) => (
                 <StatCard
                   key={stat.label}
@@ -368,7 +368,7 @@ export default function AboutPage() {
         </section>
 
         {/* ─── OUR STORY ───────────────────────────────────────────────────── */}
-        <section className="py-24 bg-gradient-to-b from-[#0b1a2e] via-[#142b40] to-[#0b1a2e] relative overflow-hidden">
+        <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-[#0b1a2e] via-[#142b40] to-[#0b1a2e] relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-dots pointer-events-none" />
           <div className="absolute top-[-20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#7CEB1D]/5 blur-3xl pointer-events-none animate-float-orb" />
 
@@ -435,7 +435,7 @@ export default function AboutPage() {
                   }`}
                 style={{ transitionDelay: "500ms" }}
               >
-                <div className="relative h-[450px] sm:h-[500px] lg:h-[520px]  rounded-3xl overflow-hidden shadow-2xl border-2 border-[#7CEB1D]/20">
+                <div className="relative h-[320px] sm:h-[420px] lg:h-[520px] rounded-3xl overflow-hidden shadow-2xl border-2 border-[#7CEB1D]/20">
                   <Image
                     src="/Image8.jpeg"
                     alt="Latitude Construction team at work"
@@ -459,7 +459,7 @@ export default function AboutPage() {
         </section>
 
         {/* ─── WHERE WE BUILD ──────────────────────────────────────────────── */}
-        <section className="py-20 bg-white relative overflow-hidden">
+        <section className="py-16 sm:py-20 bg-white relative overflow-hidden">
           <div className="absolute top-[-20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#7CEB1D]/5 blur-3xl pointer-events-none animate-float-orb" />
           <div className="absolute bottom-[-20%] left-[-10%] w-[300px] h-[300px] rounded-full bg-[#7CEB1D]/5 blur-3xl pointer-events-none animate-float-orb" style={{ animationDelay: "2s" }} />
 
@@ -474,7 +474,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {serviceAreas.map((area, index) => {
                 const { ref, isInView } = useInView({ threshold: 0.1 });
                 return (

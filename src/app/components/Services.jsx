@@ -19,42 +19,42 @@ const services = [
     title: "Custom Farm House Design",
     description:
       "Tailored architectural plans that blend rustic elegance with modern comfort, designed around your land and lifestyle.",
-    image: "/Image1.jpeg",
+    image: "/Image.jpg",
   },
   {
     icon: PenTool,
     title: "3D Farm Visualisation",
     description:
       "Walk through your future farm house in immersive 3D – every room, view, and finish visualised before construction begins.",
-    image: "/Image2.jpeg",
+    image: "/Image1.jpg",
   },
   {
     icon: Ruler,
     title: "Estate & Land Planning",
     description:
       "Optimise your acreage with expert planning – from house placement and driveways to paddocks, gardens, and outbuildings.",
-    image: "/Image3.jpeg",
+    image: "/Image2.jpg",
   },
   {
     icon: Palette,
     title: "Rustic Interior Design",
     description:
       "Warm, inviting interiors that celebrate natural materials – wood, stone, and earthy tones – with a touch of luxury.",
-    image: "/Image4.jpeg",
+    image: "/Image3.jpg",
   },
   {
     icon: Hammer,
     title: "Farm House Renovation",
     description:
       "Breathe new life into old farm houses – preserving character while upgrading structure, energy efficiency, and aesthetics.",
-    image: "/Image5.jpeg",
+    image: "/Image55.jpg",
   },
   {
     icon: Sprout,
     title: "Sustainable Construction",
     description:
       "Eco-friendly building practices – solar passive design, rainwater harvesting, and local materials for a greener farm house.",
-    image: "/Image7.jpeg",
+    image: "/Image5.jpg",
   },
 ];
 
@@ -295,8 +295,8 @@ export default function ServicesSection() {
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
             <span
               className={`inline-block text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-3 transition-all duration-700 ${sectionInView
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
                 }`}
               style={{ transitionDelay: "100ms" }}
             >
@@ -304,8 +304,8 @@ export default function ServicesSection() {
             </span>
             <h2
               className={`text-4xl sm:text-5xl md:text-6xl font-bold text-[#041423] leading-tight animate-float-soft ${sectionInView
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
                 }`}
               style={{ transitionDelay: "200ms" }}
             >
@@ -314,8 +314,8 @@ export default function ServicesSection() {
             </h2>
             <p
               className={`text-gray-600 mt-4 text-base md:text-lg max-w-xl mx-auto transition-all duration-700 ${sectionInView
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
                 }`}
               style={{ transitionDelay: "350ms" }}
             >
@@ -339,15 +339,17 @@ export default function ServicesSection() {
                 >
                   <div className="flip-card shadow-lg hover:shadow-2xl transition-shadow duration-500">
                     {/* FRONT – Image with overlay title */}
+                    {/* FRONT – Image with overlay title */}
                     <div className="flip-front">
-                      <div>
+                      <div className="image-wrapper">
                         <Image
                           src={service.image}
                           alt={service.title}
                           fill
-                          className="object-fill"
+                          className="service-image"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
+
                         <div className="front-overlay">
                           <h3>{service.title}</h3>
                         </div>

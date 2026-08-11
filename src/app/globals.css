@@ -23,6 +23,7 @@
 html{
   scroll-behavior:smooth;
   overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
 }
 
 * {
@@ -37,6 +38,7 @@ body{
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
+  padding-bottom:env(safe-area-inset-bottom);
 }
 
 a{
@@ -44,7 +46,7 @@ a{
   color:inherit;
 }
 
-img, video{
+img, video {
   max-width:100%;
   display:block;
   height:auto;
@@ -52,6 +54,15 @@ img, video{
 
 button, input, textarea, select {
   font:inherit;
+}
+
+::selection {
+  background:rgba(124, 235, 29, 0.3);
+  color:var(--foreground);
+}
+
+main {
+  overflow-wrap:anywhere;
 }
 
 .container{
@@ -102,4 +113,21 @@ button{
 .swiper-slide-next {
   opacity: .65;
   transform: scale(.9);
+}
+
+.flip-front .image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.flip-front .service-image {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.flip-container:hover .service-image {
+  transform: scale(1.05);
 }
