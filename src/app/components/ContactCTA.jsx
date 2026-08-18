@@ -37,6 +37,7 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
   });
 
@@ -44,6 +45,7 @@ export default function ContactSection() {
   const [touched, setTouched] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -97,6 +99,20 @@ export default function ContactSection() {
         return "";
       }
 
+      case "phone": {
+        if (!value || value.trim().length === 0) {
+          return "Phone number is required";
+        }
+        const digitsOnly = value.replace(/\D/g, "");
+        if (digitsOnly.length !== 10) {
+          return "Phone number must be exactly 10 digits";
+        }
+        if (!/^[6-9]\d{9}$/.test(digitsOnly)) {
+          return "Phone number must start with 6, 7, 8, or 9";
+        }
+        return "";
+      }
+
       case "message": {
         if (!value || value.trim().length === 0) {
           return "Message is required";
@@ -123,7 +139,7 @@ export default function ContactSection() {
 
   const validateForm = () => {
     const newErrors = {};
-    const fields = ["name", "email", "message"];
+    const fields = ["name", "email", "phone", "message"];
 
     fields.forEach((field) => {
       const error = validateField(field, formData[field]);
@@ -153,6 +169,25 @@ export default function ContactSection() {
     }
   };
 
+  // Phone: digits only, capped at 10
+  const handlePhoneChange = (e) => {
+    const { name, value } = e.target;
+    const limitedValue = value.replace(/\D/g, "").slice(0, 10);
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: limitedValue,
+    }));
+
+    if (touched[name]) {
+      const error = validateField(name, limitedValue);
+      setErrors((prev) => ({
+        ...prev,
+        [name]: error,
+      }));
+    }
+  };
+
   const handleBlur = (e) => {
     const { name, value } = e.target;
 
@@ -168,13 +203,16 @@ export default function ContactSection() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setSubmitError("");
 
     // Mark all fields as touched
     const allTouched = {
       name: true,
       email: true,
+      phone: true,
       message: true,
     };
     setTouched(allTouched);
@@ -197,22 +235,45 @@ export default function ContactSection() {
 
     setIsSubmitting(true);
 
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Failed to send enquiry.");
+      }
+
+      // Only on a confirmed send
       setSubmitted(true);
+
       setFormData({
         name: "",
         email: "",
+        phone: "",
         message: "",
       });
       setErrors({});
       setTouched({});
-      setIsSubmitting(false);
 
       setTimeout(() => {
         setSubmitted(false);
       }, 5000);
-    }, 1500);
+    } catch (error) {
+      console.error("Contact CTA form error:", error);
+
+      setSubmitError(
+        error.message || "Unable to send your enquiry. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -347,7 +408,7 @@ export default function ContactSection() {
               <div className="space-y-4 mt-8 sm:mt-10">
                 {[
                   { icon: FaPhone, text: "+91 89516 39116", href: "tel:+918951639116" },
-                  { icon: FaEnvelope, text: "latitudeconstructions080@gmail.com", href: "mailto:latitudeconstructions080@gmail.com" },
+                  { icon: FaEnvelope, text: "info@latitudeconstructions.in", href: "mailto:info@latitudeconstructions.in" },
                   { icon: FaMapMarkerAlt, text: "Hosur, Tamil Nadu", href: "#" },
                 ].map((item, index) => {
                   const Icon = item.icon;
@@ -453,6 +514,32 @@ export default function ContactSection() {
                     )}
                   </div>
 
+                  {/* Phone */}
+                  <div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number"
+                      inputMode="numeric"
+                      autoComplete="tel"
+                      maxLength={10}
+                      value={formData.phone}
+                      onChange={handlePhoneChange}
+                      onBlur={handleBlur}
+                      className={`form-input w-full px-5 py-3.5 rounded-xl bg-white/10 border ${
+                        errors.phone && touched.phone
+                          ? "border-red-400 error"
+                          : "border-white/20"
+                      } text-white placeholder-gray-400 focus:outline-none transition-all duration-300`}
+                    />
+                    {errors.phone && touched.phone && (
+                      <div className="form-error text-red-400 text-xs mt-1.5 flex items-center gap-1">
+                        <span>⚠</span>
+                        <span>{errors.phone}</span>
+                      </div>
+                    )}
+                  </div>
+
                   {/* Message */}
                   <div>
                     <textarea
@@ -475,6 +562,14 @@ export default function ContactSection() {
                       </div>
                     )}
                   </div>
+
+                  {/* Send failure */}
+                  {submitError && (
+                    <div className="form-error flex items-start gap-2 rounded-xl border border-red-400/40 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                      <span className="leading-5">⚠</span>
+                      <span>{submitError}</span>
+                    </div>
+                  )}
 
                   {/* Submit Button */}
                   <button

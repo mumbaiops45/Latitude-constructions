@@ -60,11 +60,10 @@ const FormField = ({
           value={value}
           onChange={onChange}
           onBlur={onBlur}
-          className={`form-input textarea ${
-            hasError
+          className={`form-input textarea ${hasError
               ? "border-red-400 focus:border-red-400 focus:ring-red-200"
               : ""
-          }`}
+            }`}
           placeholder={placeholder}
           required={required}
           rows={rows || 5}
@@ -77,11 +76,10 @@ const FormField = ({
           value={value}
           onChange={onChange}
           onBlur={onBlur}
-          className={`form-input ${
-            hasError
+          className={`form-input ${hasError
               ? "border-red-400 focus:border-red-400 focus:ring-red-200"
               : ""
-          }`}
+            }`}
           placeholder={placeholder}
           required={required}
           inputMode={isPhone ? "numeric" : "text"}
@@ -89,10 +87,10 @@ const FormField = ({
             isPhone
               ? "tel"
               : name === "email"
-              ? "email"
-              : name === "name"
-              ? "name"
-              : "on"
+                ? "email"
+                : name === "name"
+                  ? "name"
+                  : "on"
           }
           maxLength={isPhone ? 10 : undefined}
         />
@@ -366,8 +364,12 @@ export default function ContactPage() {
      SUBMIT
   ========================================================= */
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // ==========================================
+    // Mark all fields as touched
+    // ==========================================
 
     const allTouched = {
       name: true,
@@ -378,11 +380,17 @@ export default function ContactPage() {
 
     setTouched(allTouched);
 
+
+    // ==========================================
+    // Validate form
+    // ==========================================
+
     const isValid = validateForm();
 
     if (!isValid) {
-      // Scroll to first error
+
       setTimeout(() => {
+
         const firstError =
           document.querySelector(".form-error");
 
@@ -392,20 +400,67 @@ export default function ContactPage() {
             block: "center",
           });
         }
+
       }, 50);
 
       return;
     }
 
+
+    // ==========================================
+    // Start loading
+    // ==========================================
+
     setIsSubmitting(true);
 
-    /*
-      Replace this setTimeout with your real API call
-      when backend integration is ready.
-    */
 
-    setTimeout(() => {
+    try {
+
+      // ========================================
+      // Call Next.js API
+      // ========================================
+
+      const response = await fetch(
+        "/api/enquiry",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(formData),
+        }
+      );
+
+
+      // ========================================
+      // Get API response
+      // ========================================
+
+      const data = await response.json();
+
+
+      // ========================================
+      // Check response
+      // ========================================
+
+      if (!response.ok || !data.success) {
+        throw new Error(
+          data.message ||
+          "Failed to send enquiry."
+        );
+      }
+
+
+      // ========================================
+      // Success
+      // ========================================
+
       setSubmitted(true);
+
+
+      // Reset form
 
       setFormData({
         name: "",
@@ -414,14 +469,37 @@ export default function ContactPage() {
         message: "",
       });
 
+
       setErrors({});
       setTouched({});
-      setIsSubmitting(false);
+
+
+      // Hide success message after 5 seconds
 
       setTimeout(() => {
         setSubmitted(false);
       }, 5000);
-    }, 1500);
+
+
+    } catch (error) {
+
+      console.error(
+        "Contact form error:",
+        error
+      );
+
+
+      alert(
+        error.message ||
+        "Unable to send your enquiry. Please try again."
+      );
+
+
+    } finally {
+
+      setIsSubmitting(false);
+
+    }
   };
 
   /* =========================================================
@@ -1056,10 +1134,9 @@ export default function ContactPage() {
                 mb-4
                 transition-all
                 duration-700
-                ${
-                  sectionInView
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 -translate-y-4"
+                ${sectionInView
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 -translate-y-4"
                 }
               `}
               style={{
@@ -1078,10 +1155,9 @@ export default function ContactPage() {
                 leading-tight
                 transition-all
                 duration-700
-                ${
-                  sectionInView
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-6"
+                ${sectionInView
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
                 }
               `}
               style={{
@@ -1112,10 +1188,9 @@ export default function ContactPage() {
                 mx-auto
                 transition-all
                 duration-700
-                ${
-                  sectionInView
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-6"
+                ${sectionInView
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
                 }
               `}
               style={{
@@ -1816,7 +1891,7 @@ export default function ContactPage() {
                         />
 
                         <a
-                          href="mailto:latitudeconstructions080@gmail.com"
+                          href="mailto:info@latitudeconstructions.in"
                           className="
                             text-sm
                             text-gray-600
@@ -1825,7 +1900,7 @@ export default function ContactPage() {
                             break-all
                           "
                         >
-                          latitudeconstructions080@gmail.com
+                          info@latitudeconstructions.in
                         </a>
                       </div>
                     </div>
@@ -1848,9 +1923,9 @@ export default function ContactPage() {
                       icon: Mail,
                       label: "Email us",
                       value:
-                        "latitudeconstructions080@gmail.com",
+                        "info@latitudeconstructions.in",
                       href:
-                        "mailto:latitudeconstructions080@gmail.com",
+                        "mailto:info@latitudeconstructions.in",
                     },
                   ].map((item, index) => {
                     const Icon = item.icon;
@@ -1860,10 +1935,9 @@ export default function ContactPage() {
                         key={index}
                         className={`
                           scroll-fade
-                          ${
-                            sectionInView
-                              ? "visible"
-                              : ""
+                          ${sectionInView
+                            ? "visible"
+                            : ""
                           }
                           contact-item
                           flex
@@ -1980,7 +2054,7 @@ export default function ContactPage() {
         {/* =====================================================
             MAP
         ===================================================== */}
-{/* 
+        {/* 
         <section className="py-16 bg-white">
           <div
             className="

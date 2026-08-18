@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
+// import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import { useRef, useEffect, useState } from "react";
 
 function useInView(options = {}) {
@@ -72,12 +72,12 @@ const footerServices = [
   },
 ];
 
-const socialLinks = [
-  { icon: FaFacebookF, href: "#", label: "Facebook" },
-  { icon: FaInstagram, href: "#", label: "Instagram" },
-  { icon: FaLinkedinIn, href: "#", label: "LinkedIn" },
-  { icon: FaYoutube, href: "#", label: "YouTube" },
-];
+// const socialLinks = [
+//   { icon: FaFacebookF, href: "#", label: "Facebook" },
+//   { icon: FaInstagram, href: "#", label: "Instagram" },
+//   { icon: FaLinkedinIn, href: "#", label: "LinkedIn" },
+//   { icon: FaYoutube, href: "#", label: "YouTube" },
+// ];
 
 export default function Footer() {
   const { ref, isInView } = useInView({ threshold: 0.1 });
@@ -286,10 +286,10 @@ export default function Footer() {
                     <div>
                       <p className="text-gray-500 text-xs uppercase tracking-wider">Email</p>
                       <a
-                        href="mailto:latitudeconstructions080@gmail.com"
+                        href="mailto:info@latitudeconstructions.in"
                         className="text-gray-300 hover:text-[#7CEB1D] transition-colors text-sm break-all"
                       >
-                        latitudeconstructions080@gmail.com
+                        info@latitudeconstructions.in
                       </a>
                     </div>
                   </div>
@@ -309,7 +309,7 @@ export default function Footer() {
                 </div>
 
                 {/* Social Icons */}
-                <div className="flex gap-3 mt-6">
+                {/* <div className="flex gap-3 mt-6">
                   {socialLinks.map((social, index) => {
                     const Icon = social.icon;
                     return (
@@ -326,7 +326,7 @@ export default function Footer() {
                       </Link>
                     );
                   })}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
