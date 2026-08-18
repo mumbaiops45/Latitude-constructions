@@ -1,6 +1,15 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+// Route Handlers must not be cached or statically evaluated: this one
+// reads request data and env vars at request time.
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
+// Netlify Functions default to a 10s wall clock. Give the SMTP
+// handshake + send room to finish inside a bounded window.
+export const maxDuration = 20;
+
 export async function POST(req) {
   try {
     // ==========================================
@@ -61,6 +70,10 @@ export async function POST(req) {
           success: false,
           message:
             "Email configuration is incomplete.",
+
+          // Names only, never values. Makes a misconfigured
+          // deploy diagnosable without reading platform logs.
+          missing: missingEnv,
         },
         {
           status: 500,
@@ -85,18 +98,13 @@ export async function POST(req) {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
+
+      // Serverless cold starts can hang on a silent SMTP socket.
+      // Fail fast instead of burning the function timeout.
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 15000,
     });
-
-
-    // ==========================================
-    // 5. Verify SMTP connection
-    // ==========================================
-
-    await transporter.verify();
-
-    console.log(
-      "SMTP connection verified successfully"
-    );
 
 
     // ==========================================
