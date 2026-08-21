@@ -374,7 +374,7 @@ export default function AboutPage() {
 
           <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
             {/* <div className="grid lg:grid-cols-2 gap-16 items-center"> */}
-              <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-stretch">
               <div>
                 <span
                   className={`text-[#7CEB1D] font-semibold text-sm tracking-[0.2em] uppercase mb-2 block transition-all duration-700 ${sectionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -435,12 +435,12 @@ export default function AboutPage() {
                   }`}
                 style={{ transitionDelay: "500ms" }}
               >
-                <div className="relative h-[320px] sm:h-[420px] lg:h-[520px] rounded-3xl overflow-hidden shadow-2xl border-2 border-[#7CEB1D]/20">
+                <div className="relative w-full aspect-square sm:aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[520px] rounded-3xl overflow-hidden shadow-2xl border-2 border-[#7CEB1D]/20">
                   <Image
-                    src="/Image8.jpeg"
-                    alt="Latitude Construction team at work"
+                    src="/images/Mrs.%20Shika%20-%20Thally/IMG-20260722-WA0006.jpg"
+                    alt="Mrs. Shika farmhouse in Thally by Latitude Construction"
                     fill
-                    className="object-fill"
+                    className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 </div>
