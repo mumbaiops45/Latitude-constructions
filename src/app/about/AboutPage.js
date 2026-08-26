@@ -68,7 +68,7 @@ function useCountUp(target, isInView, duration = 2000) {
 }
 
 const stats = [
-  { icon: Building2, value: "24+", label: "Years Experience" },
+  { icon: Building2, value: "12+", label: "Years Experience" },
   { icon: Users, value: "500+", label: "Projects Completed" },
   { icon: Award, value: "50+", label: "Awards Won" },
   { icon: Clock, value: "98%", label: "Client Satisfaction" },

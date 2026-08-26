@@ -68,7 +68,7 @@ function useCountUp(target, isInView, duration = 2000) {
 }
 
 const stats = [
-  { icon: Clock, value: "24+", label: "Years Experience" },
+  { icon: Clock, value: "12+", label: "Years Experience" },
   { icon: Building2, value: "500+", label: "Projects" },
   { icon: Users, value: "98%", label: "Happy Clients" },
   { icon: Award, value: "50+", label: "Awards" },
@@ -236,7 +236,7 @@ export default function AboutSection() {
                   }`}
                 style={{ transitionDelay: "600ms" }}
               >
-                <h3 className="text-5xl font-bold text-[#7CEB1D]">24+</h3>
+                <h3 className="text-5xl font-bold text-[#7CEB1D]">12+</h3>
                 <p className="text-white/80 mt-2">Years of Farm House Excellence</p>
               </div>
             </div>

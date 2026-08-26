@@ -33,6 +33,12 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# SMTP credentials for the enquiry endpoint (see enquiry-config.example.php)
+public/enquiry-config.php
+
+# Portable PHP used by `npm run preview` to run the enquiry endpoint locally
+tools/php/
+
 # vercel
 .vercel
 

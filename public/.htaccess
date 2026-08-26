@@ -1,0 +1,15 @@
+# Block direct web access to the SMTP credentials.
+#
+# enquiry-config.php sits in the web root because send-enquiry.php includes it
+# from the same folder. While PHP is working it outputs nothing when requested
+# directly, but if PHP were ever disabled or misconfigured the server would fall
+# back to serving it as plain text — which would publish the mailbox password.
+# This denies the request outright either way.
+
+<FilesMatch "^enquiry-config.*\.php$">
+    Require all denied
+</FilesMatch>
+
+# The export writes its not-found page here; without this Apache serves its own
+# generic 404 instead of the site's.
+ErrorDocument 404 /404.html

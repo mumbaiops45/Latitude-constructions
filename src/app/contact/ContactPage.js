@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import { sendEnquiry } from "@/app/lib/sendEnquiry";
 import {
   Phone,
   Mail,
@@ -417,40 +418,10 @@ export default function ContactPage() {
     try {
 
       // ========================================
-      // Call Next.js API
+      // Send enquiry (Web3Forms)
       // ========================================
 
-      const response = await fetch(
-        "/api/enquiry",
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify(formData),
-        }
-      );
-
-
-      // ========================================
-      // Get API response
-      // ========================================
-
-      const data = await response.json();
-
-
-      // ========================================
-      // Check response
-      // ========================================
-
-      if (!response.ok || !data.success) {
-        throw new Error(
-          data.message ||
-          "Failed to send enquiry."
-        );
-      }
+      await sendEnquiry(formData);
 
 
       // ========================================

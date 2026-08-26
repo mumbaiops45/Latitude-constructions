@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "php": "tools\\php\\php.exe -S localhost:8000 -t public",
     "build": "next build",
     "start": "next start",
+    "preview": "next build && tools\\php\\php.exe -S localhost:8000 -t out",
     "lint": "eslint"
   },
   "dependencies": {
